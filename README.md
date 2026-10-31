@@ -1,7 +1,7 @@
 # supraman-web
 
 The supraman.ai landing page. Static files, no build step: `index.html`, `assets/site.css`,
-the brand files in `assets/brand/` (copied from the brand kit at `P:\Projects\LarchSys\_Logo\supraman`)
+the brand files in `assets/brand/` (copied from the brand kit at `P:\Projects\LarchSys\getsupraman\brand`)
 and Archivo, subset to Latin and self-hosted in `assets/fonts/` (SIL OFL 1.1, license beside it).
 The page loads nothing from other hosts and sets no cookies.
 
