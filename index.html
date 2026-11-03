@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Supraman · Run your crew of AI coding agents like a shift</title>
-  <meta name="description" content="Supraman supervises your Claude Code sessions. Workman keeps the record of what they did. Open-source tools for running AI coding agents like a shift.">
+  <title>Supraman · Your coding agents don't need an IDE</title>
+  <meta name="description" content="Supraman is a native app for running many Claude Code sessions at once: every session found, back after a reboot, schedules on your machine, sessions that talk by name. Workman gives them a memory that survives compaction. Open source.">
   <meta name="color-scheme" content="dark light">
   <meta name="theme-color" content="#12151b" media="(prefers-color-scheme: dark)">
   <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
@@ -13,8 +13,8 @@
   <link rel="apple-touch-icon" href="assets/brand/supraman-1024.png">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://supraman.ai/">
-  <meta property="og:title" content="Supraman">
-  <meta property="og:description" content="Run your crew of AI coding agents like a shift. Supraman supervises your Claude Code sessions; Workman keeps the record of what they did.">
+  <meta property="og:title" content="Supraman · Your coding agents don't need an IDE">
+  <meta property="og:description" content="Run a crew of Claude Code sessions from one fast, native app. Supraman supervises them; Workman remembers what they did and won't let them call it done without proof.">
   <meta property="og:image" content="https://supraman.ai/assets/brand/social-card.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -30,9 +30,10 @@
         </picture>
       </a>
       <nav class="nav" aria-label="Main">
-        <a href="#tools">Tools</a>
-        <a href="#how">How it works</a>
-        <a class="nav-gh" href="https://github.com/getsupraman">GitHub</a>
+        <a href="#supraman">Supraman</a>
+        <a href="#workman">Workman</a>
+        <a href="#coming">Coming</a>
+        <a class="nav-gh" href="#get">Download</a>
       </nav>
     </div>
   </header>
@@ -41,16 +42,17 @@
     <section class="hero">
       <div class="wrap hero-grid">
         <div class="hero-copy">
-          <p class="status"><span class="dot" aria-hidden="true"></span>Open-source release in preparation · Apache-2.0</p>
-          <h1>Run your crew of AI coding agents <span class="amber">like a shift.</span></h1>
-          <p class="lede">Supraman supervises your Claude Code sessions. Workman keeps the record of what they did. You step in only where a session needs you.</p>
+          <p class="status"><span class="dot" aria-hidden="true"></span>Supraman 0.1 for Windows · Workman 2.1 · open source</p>
+          <h1>Your coding agents don't need an IDE. <span class="amber">They need a supervisor.</span></h1>
+          <p class="lede">The new stack is AI and Git. Supraman is the one window above it: every Claude Code session on your machine, found, kept alive and back after a reboot. Workman gives those sessions a memory that survives compaction, and a <em>done</em> that needs proof.</p>
           <div class="ctas">
-            <a class="btn primary" href="https://github.com/getsupraman">Follow on GitHub</a>
-            <a class="btn ghost" href="#tools">See the tools</a>
+            <a class="btn primary" href="https://github.com/getsupraman/supraman/releases/latest">Download for Windows</a>
+            <a class="btn ghost" href="#get">Add Workman to Claude Code</a>
           </div>
+          <p class="fine">Free and open source. Windows 10/11 today; macOS and Linux are on the roadmap.</p>
         </div>
 
-        <figure class="board" aria-label="Illustration of the Supraman session board">
+        <figure class="board" aria-label="Illustration of the Supraman window: an inbox and the session tree">
           <div class="board-bar">
             <img src="assets/brand/supraman-16.svg" alt="" width="18" height="18">
             <span>Supraman</span>
@@ -58,20 +60,18 @@
           </div>
           <div class="board-body">
             <div class="ws">
+              <div class="ws-name">inbox · 2 need you</div>
+              <div class="sess need"><span class="sname">checkout-api-auth · permission prompt</span><span class="chip needs">needs you</span></div>
+              <div class="sess need"><span class="sname">storefront-a11y · asks a question</span><span class="chip needs">reply</span></div>
+            </div>
+            <div class="ws">
               <div class="ws-name">checkout-api</div>
               <div class="sess"><span class="sname">checkout-api-orders</span><span class="chip run">running</span></div>
-              <div class="sess need"><span class="sname">checkout-api-auth</span><span class="chip needs">needs you</span></div>
               <div class="sess"><span class="sname">checkout-api-tests</span><span class="chip done">done · verified</span></div>
             </div>
             <div class="ws">
-              <div class="ws-name">storefront</div>
-              <div class="sess"><span class="sname">storefront-search</span><span class="chip run">running</span></div>
-              <div class="sess"><span class="sname">storefront-a11y</span><span class="chip idle">waiting on 2.3</span></div>
-            </div>
-            <div class="ws">
-              <div class="ws-name">docs</div>
-              <div class="sess"><span class="sname">docs-migration</span><span class="chip run">running</span></div>
-              <div class="sess"><span class="sname">docs-links</span><span class="chip done">done · verified</span></div>
+              <div class="ws-name">schedules</div>
+              <div class="sess"><span class="sname">nightly /replay-failures · 02:00</span><span class="chip idle">approved</span></div>
             </div>
           </div>
           <figcaption>Illustration with example names, not a screenshot.</figcaption>
@@ -79,38 +79,104 @@
       </div>
     </section>
 
-    <section id="tools" class="tools">
+    <section class="shift">
+      <div class="wrap shift-grid">
+        <div class="shift-copy">
+          <p class="kicker">The shift</p>
+          <h2>You stopped writing every line. Your tools didn't notice.</h2>
+          <p class="section-lede">Agentic engineers brief, review and verify. The code is written by agents in a terminal. Yet most of us still open a whole IDE, sometimes gigabytes of Electron, just to host those terminals, and then we lose track of them anyway.</p>
+        </div>
+        <ul class="facts" aria-label="Supraman in numbers">
+          <li><b>154&nbsp;MB</b><span>working set of a Supraman that ran all day with many tabs open</span></li>
+          <li><b>29&nbsp;MB</b><span>one native executable, written in Rust. No Electron, no installer</span></li>
+          <li><b>1</b><span>window for every Claude Code session on the machine, interactive or background</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="supraman" class="pains">
       <div class="wrap">
-        <h2>One above the crew, a crew that does the work</h2>
-        <p class="section-lede">Every tool carries the same chevron. Supraman stands above the crew; the others are the crew's tools.</p>
-        <div class="tool-grid">
-          <article class="tool lead">
-            <img src="assets/brand/supraman.svg" alt="" width="64" height="64">
-            <div>
-              <h3><span class="nm"><span class="amber">Supra</span>man</span></h3>
-              <p>A desktop app that supervises workspaces of Claude Code sessions. It launches, resumes and watches them, and shows you which ones need you.</p>
-            </div>
+        <div class="product-head">
+          <img src="assets/brand/supraman.svg" alt="" width="56" height="56">
+          <div>
+            <h2><span class="amber">Supra</span>man keeps your sessions</h2>
+            <p class="section-lede">A desktop app that runs above Claude Code. It doesn't replace the agent; it makes running ten of them feel like running one.</p>
+          </div>
+        </div>
+        <div class="pain-grid">
+          <article class="pain">
+            <p class="ouch">"I rebooted. Which eight sessions were open, and in which folders?"</p>
+            <h3>Pick up exactly where you left off</h3>
+            <p>Tabs reopen as resumes, and the sessions a workspace wants running are started again for you. A reboot costs you nothing.</p>
           </article>
-          <article class="tool lead">
-            <img src="assets/brand/workman.svg" alt="" width="64" height="64">
-            <div>
-              <h3><span class="nm"><span class="amber">Work</span>man</span></h3>
-              <p>A self-hosted MCP server and dashboard that records what agents do: projects, runs, tasks, evidence and decisions. Your agents stop writing PLAN.md files.</p>
-            </div>
+          <article class="pain">
+            <p class="ouch">"That session from last Tuesday. What was its folder? Its id?"</p>
+            <h3>Find any session in seconds</h3>
+            <p>Every Claude Code session on the machine, grouped by workspace, repo and worktree, with its live state. Search by name, id or folder.</p>
           </article>
-          <article class="tool">
-            <img src="assets/brand/gitman.svg" alt="" width="48" height="48">
-            <div>
-              <h3><span class="nm"><span class="amber">Git</span>man</span> <span class="tag">planned</span></h3>
-              <p>Git for the crew, built on Supraman.</p>
-            </div>
+          <article class="pain">
+            <p class="ouch">"Three agents sat on a permission prompt for an hour. I never saw it."</p>
+            <h3>One Inbox for everything that needs you</h3>
+            <p>Permission prompts, questions from a session, failed launches, failed scheduled runs and Workman items that are blocked on you, all in one list.</p>
           </article>
-          <article class="tool">
-            <img src="assets/brand/fileman.svg" alt="" width="48" height="48">
-            <div>
-              <h3><span class="nm"><span class="amber">File</span>man</span> <span class="tag">planned</span></h3>
-              <p>Files for the crew, built on Supraman.</p>
-            </div>
+          <article class="pain">
+            <p class="ouch">"My nightly agent loop never ran reliably."</p>
+            <h3>Loop engineering that actually runs</h3>
+            <p>Schedule a slash command or a prompt on your own machine, with your files, your <code>.env</code> and Docker. Caps and run history included, and nothing runs until you approve it.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"I want this session to ask that one, but I can't even guess its name."</p>
+            <h3>Sessions that talk to each other by name</h3>
+            <p>Supraman shows every session's real name, so a session can message another one directly. <code>sm send</code> and <code>sm tell</code> carry messages between you and your sessions. No more copying and pasting between terminals.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"My IDE eats more memory than the agents it hosts."</p>
+            <h3>Native, fast and light</h3>
+            <p>Built in Rust on gpui, the engine behind Zed. Your RAM goes to the AI workloads, not to a browser pretending to be a terminal.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="workman" class="pains alt">
+      <div class="wrap">
+        <div class="product-head">
+          <img src="assets/brand/workman.svg" alt="" width="56" height="56">
+          <div>
+            <h2><span class="amber">Work</span>man remembers the work</h2>
+            <p class="section-lede">A work tracker your agents talk to over MCP: projects, runs, tasks, rules and evidence. Your agents forget; Workman remembers.</p>
+          </div>
+        </div>
+        <div class="pain-grid">
+          <article class="pain">
+            <p class="ouch">"The context compacted, and the agent forgot what we decided."</p>
+            <h3>Survive compaction with one call</h3>
+            <p><code>work_brief</code> rebuilds the goal, where things stand, the rules that bind the work and the literal next step. It is generated from the record, so it can't go stale.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"PLAN.md grew into forty files the agent gets lost in."</p>
+            <h3>Retire your plan and ledger files</h3>
+            <p>Every task, rule, finding, assumption and note is its own record. An agent gets only what binds the task in front of it, and binding rules print in every brief.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"'All tests pass.' They never ran."</p>
+            <h3>Done means proven</h3>
+            <p>The done guard refuses to close a task until every criterion is checked and someone other than the worker ran the verification. The refusal says exactly what is missing.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"Next comes M33, then R22. What is M33?"</p>
+            <h3>Every item has a name and a link</h3>
+            <p>One click opens the definition, criteria, evidence and history. The dashboard shows what each agent reported next to what was verified.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"We deferred it. Nobody ever saw it again."</p>
+            <h3>Nothing is dropped quietly</h3>
+            <p>Deferring is a move: the work lands as a real open item somewhere else, with its reason. Nothing is deleted, and every forced close shows up in the audit.</p>
+          </article>
+          <article class="pain">
+            <p class="ouch">"A co-worker joined, and our plan files stopped agreeing."</p>
+            <h3>One record for every machine and teammate</h3>
+            <p>One server for every session, on every machine, for the whole team. Leased claims stop two sessions from working the same task.</p>
           </article>
         </div>
       </div>
@@ -119,19 +185,19 @@
     <section id="how" class="how">
       <div class="wrap how-grid">
         <div>
-          <h2>How a shift runs</h2>
+          <h2>Better together: how a shift runs</h2>
           <ol class="steps">
             <li>
               <h3>Supraman starts the crew</h3>
-              <p>Each workspace gets its Claude Code sessions. They run in the background and come back after a restart.</p>
+              <p>Each workspace gets its Claude Code sessions, in the background or in a tab. They come back after a restart.</p>
             </li>
             <li>
               <h3>Agents write their work into Workman</h3>
-              <p>Plans, tasks, findings and the evidence for each one go into Workman over MCP, not into files that go stale.</p>
+              <p>Sign in once, and every session Supraman launches gets its own Workman identity. Plans, tasks and evidence go to the record, not into files that go stale.</p>
             </li>
             <li>
-              <h3>You step in where it counts</h3>
-              <p>Supraman shows which sessions are blocked or waiting on you. Workman's dashboard shows where every run stands.</p>
+              <h3>You step in only where it counts</h3>
+              <p>The Inbox shows which sessions wait on you and which work items are blocked. Everything else keeps moving.</p>
             </li>
           </ol>
         </div>
@@ -142,9 +208,69 @@
 <span class="c">^</span>work_next             <span class="m"># what is ready to start</span>
 <span class="c">^</span>work_status <span class="s">in_progress</span>
   … do the work …
-<span class="c">^</span>work_verify           <span class="m"># evidence the agent ran itself</span>
-<span class="c">^</span>work_status <span class="s">done</span>      <span class="m"># refused without evidence</span></code></pre>
-          <p class="loop-note">Closing is guarded. Workman refuses <code>done</code> until every criterion is checked, a verification exists and no blocker is open. Work can't be dropped quietly: deferring moves it somewhere real.</p>
+<span class="c">^</span>work_verify           <span class="m"># evidence, not a claim</span>
+<span class="c">^</span>work_status <span class="s">done</span>      <span class="m"># refused without proof</span></code></pre>
+          <p class="loop-note">You don't type any of this. You say "Plan this feature", "Work the loop" or "Did we cheat?", and the agent makes the calls.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="coming" class="coming">
+      <div class="wrap">
+        <p class="kicker">Coming soon</p>
+        <h2>The rest of the IDE, without the IDE</h2>
+        <p class="section-lede">The same native engine, the same small footprint. Each one built into Supraman and usable on its own.</p>
+        <div class="tool-grid three">
+          <article class="tool">
+            <img src="assets/brand/gitman.svg" alt="" width="48" height="48">
+            <div>
+              <h3><span class="nm"><span class="amber">Git</span>man</span> <span class="tag">coming</span></h3>
+              <p>A complete Git client that's fast and light on memory. Review what your agents changed, then stage, commit, branch and merge, without an Electron app.</p>
+            </div>
+          </article>
+          <article class="tool">
+            <img src="assets/brand/fileman.svg" alt="" width="48" height="48">
+            <div>
+              <h3><span class="nm"><span class="amber">File</span>man</span> <span class="tag">coming</span></h3>
+              <p>Fast, light file access. Browse the repo your agents are working in, open a file and look around, without opening an editor.</p>
+            </div>
+          </article>
+          <article class="tool">
+            <span class="os" aria-hidden="true">mac<br>linux</span>
+            <div>
+              <h3>macOS &amp; Linux <span class="tag">roadmap</span></h3>
+              <p>Supraman runs on Windows today. macOS and Linux come next, with the same native app.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="get" class="get">
+      <div class="wrap">
+        <h2>Get started</h2>
+        <div class="get-grid">
+          <article class="get-card">
+            <h3><span class="nm"><span class="amber">Supra</span>man</span> <span class="tag">Windows 10/11 · x64</span></h3>
+            <ol class="mini">
+              <li>Download the zip from <a href="https://github.com/getsupraman/supraman/releases/latest">GitHub Releases</a>.</li>
+              <li>Unblock it in the file's Properties, then extract it anywhere. There's no installer; SmartScreen may ask once.</li>
+              <li>Run <code>supraman.exe</code> and add a folder of your repos as a workspace.</li>
+            </ol>
+            <p class="req">Needs the Claude Code CLI 2.1.308 or newer, and PowerShell 7 for terminal tabs. It updates itself with signed releases.</p>
+            <a class="btn primary" href="https://github.com/getsupraman/supraman/releases/latest">Download Supraman</a>
+          </article>
+          <article class="get-card">
+            <h3><span class="nm"><span class="amber">Work</span>man</span> <span class="tag">any Claude Code</span></h3>
+            <p class="req">Connect to the hosted server (invite only for now). You sign in in the browser, so there's no token to paste:</p>
+            <pre class="term small"><code>claude mcp add --transport http --scope user \
+  workman https://work.supraman.ai/mcp</code></pre>
+            <p class="req">Then add the skills in Claude Code:</p>
+            <pre class="term small"><code>/plugin marketplace add getsupraman/workman
+/plugin install workman@supraman</code></pre>
+            <p class="req">Want to self-host? Run <code>/workman:setup</code>. It starts Workman in Docker on your machine.</p>
+            <a class="btn ghost" href="https://github.com/getsupraman/workman">Workman on GitHub</a>
+          </article>
         </div>
       </div>
     </section>
@@ -152,10 +278,10 @@
     <section class="closing">
       <div class="wrap closing-row">
         <div>
-          <h2>Open source, self-hosted, yours</h2>
-          <p class="section-lede">Supraman and Workman are being prepared for release under Apache-2.0. Workman runs on your own machine or server, and your work records stay there.</p>
+          <h2>Open source, local first, yours</h2>
+          <p class="section-lede">Supraman runs on your machine under GPL-3.0. Workman is Apache-2.0, and you can host it yourself so your work records stay with you.</p>
         </div>
-        <a class="btn primary" href="https://github.com/getsupraman">Follow on GitHub</a>
+        <a class="btn primary" href="https://github.com/getsupraman">Star us on GitHub</a>
       </div>
     </section>
   </main>
