@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Workman · Your agents forget. Workman remembers.</title>
+  <meta name="description" content="Workman is the work tracker your Claude Code agents talk to over MCP. Say 'plan this feature' or 'where were we?' and the agent keeps plans, rules, evidence and decisions in one record that survives compaction.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#12151b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../assets/brand/workman.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="../assets/brand/supraman-1024.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://supraman.ai/workman/">
+  <meta property="og:title" content="Workman · Your agents forget. Workman remembers.">
+  <meta property="og:description" content="The work tracker your coding agents talk to. Plans, rules and evidence live in one record, not in PLAN.md, and done needs proof.">
+  <meta property="og:image" content="https://supraman.ai/assets/brand/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="../" aria-label="Supraman home">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="../assets/brand/supraman-lockup-on-light.svg">
+          <img src="../assets/brand/supraman-lockup-on-dark.svg" alt="Supraman" width="164" height="38">
+        </picture>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="../supraman/">Supraman</a>
+        <a href="./" aria-current="page">Workman</a>
+        <a href="../#coming">Coming</a>
+        <a class="nav-gh" href="#get">Get Workman</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="mark">
+          <img src="../assets/brand/workman.svg" alt="" width="56" height="56">
+          <p class="status"><span class="dot" aria-hidden="true"></span>Workman 2.1 · MCP server, dashboard and skills · Apache-2.0</p>
+        </div>
+        <h1>Your agents forget. <span class="amber">Workman remembers.</span></h1>
+        <p class="lede">Workman is the work tracker your Claude Code agents talk to over MCP. You don't learn any tools. You say "plan this feature", "where were we?" or "did we cheat?", and the agent knows what each word means in the record.</p>
+        <div class="ctas">
+          <a class="btn primary" href="#get">Get Workman</a>
+          <a class="btn ghost" href="#language">Learn the language</a>
+        </div>
+      </div>
+      <div class="wrap" style="margin-top: 36px">
+        <figure class="shot">
+          <picture>
+            <source media="(prefers-color-scheme: light)" srcset="../assets/shots/dashboard-overview-light.jpg">
+            <img src="../assets/shots/dashboard-overview-dark.jpg" alt="The Workman dashboard overview: two items need you, four are being worked on, and the runs of two projects with their progress bars." width="1530" height="784" loading="lazy">
+          </picture>
+          <figcaption>The dashboard: what needs you, who works on what, and every run's progress.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Why</p>
+        <h2>Plan files don't scale. A record does.</h2>
+        <div class="split">
+          <div class="feat">
+            <p>A long run fills the context, the session compacts, and the agent forgets what was decided and why. So you keep a <code>PLAN.md</code> and a <code>LEDGER.md</code>. A few weeks later they are dozens of files. The agent gets lost in them, drops follow-ups and breaks rules it can no longer find.</p>
+            <p>Workman moves all of that out of the context window and out of markdown, into one server. Every task, rule, decision and finding is its own record with a name and a link. A session that starts cold, or one that just compacted, asks for its <b>brief</b> and gets the goal, where things stand, the rules that bind it and its literal next step.</p>
+          </div>
+          <pre class="term" aria-label="An abridged work_brief"><code><span class="c">RUN</span> checkout-v2  · branch feat/checkout-v2
+<span class="c">GOAL</span> Ship the new checkout behind a flag.
+
+<span class="c">WHERE</span>  phase 1 of 3 · Saved carts · 1 of 3 done
+<span class="c">NEXT</span>   work_status(ref:"1.2", to:"in_progress")
+
+<span class="c">BINDING</span> (2)
+  <span class="s">!</span> C1  never write to the payments schema
+         from the cart service
+  · C2  run the suite with --filter CartMerge
+
+<span class="c">ADDRESSED TO YOU</span> (1)
+  an empty guest cart must change nothing</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="language" class="block">
+      <div class="wrap">
+        <p class="kicker">The Workman language</p>
+        <h2>A small vocabulary your agent already understands</h2>
+        <p class="section-lede">The server gives every session its instructions. You state the goal with these words, and the agent picks the calls.</p>
+
+        <h3 style="margin-top: 26px">Where work lives</h3>
+        <div class="terms">
+          <article class="term-card">
+            <h3>Project, run, phase</h3>
+            <p>A project is a repo or any long-lived body of work. A run is one undertaking in it with a goal: a feature, a fix, a migration. Phases split a run into stages.</p>
+            <p class="say">"Make this a run. Split it into schema, API, dashboard."</p>
+          </article>
+          <article class="term-card">
+            <h3>Task</h3>
+            <p>One piece of work with done-criteria and a verification command. Workman refuses a task without both. Tasks can hold subtasks.</p>
+            <p class="say">"Add a task for the migration. Break 2.3 into subtasks."</p>
+          </article>
+          <article class="term-card">
+            <h3>Gate</h3>
+            <p>The check at the end of a phase: does the phase as a whole meet its goal, beyond each task passing on its own? Anything it finds becomes a finding.</p>
+            <p class="say">"Gate phase 2 before you start phase 3."</p>
+          </article>
+          <article class="term-card">
+            <h3>Ref and backlog</h3>
+            <p>Every item has a ref (<code>2.3</code>, <code>checkout-v2/2.3</code>) and a link that opens it on the dashboard. The backlog is where work goes that belongs to no run yet.</p>
+            <p class="say">"What's 2.3? Link me the item. Put it on the backlog."</p>
+          </article>
+        </div>
+
+        <h3 style="margin-top: 34px">Things that are not tasks</h3>
+        <div class="terms">
+          <article class="term-card">
+            <h3>Finding</h3>
+            <p>Something found wrong by a review, a gate or the agent itself. A <b>blocker</b> stops its target from closing; a <b>minor</b> one doesn't.</p>
+            <p class="say">"Log that as a finding against 2.4. Is it a blocker?"</p>
+          </article>
+          <article class="term-card">
+            <h3>Follow-up</h3>
+            <p>Something to do later, written down now so it isn't lost in the chat.</p>
+            <p class="say">"Note it as a follow-up and carry on."</p>
+          </article>
+          <article class="term-card">
+            <h3>Question</h3>
+            <p>A decision only you should make, held as an item. Work that waits on it is blocked until you answer, and it shows up in your inbox.</p>
+            <p class="say">"Make that a question for me."</p>
+          </article>
+          <article class="term-card">
+            <h3>Spike and incident</h3>
+            <p>A time-boxed exploration, or something that went wrong in operation. Both are items with a state, so they don't vanish.</p>
+            <p class="say">"Open a spike: can we stream the export?"</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Done, and how it is proven</p>
+        <h2>A report is a claim. Done needs evidence.</h2>
+        <div class="split">
+          <div class="terms" style="grid-template-columns: 1fr; margin-top: 0">
+            <article class="term-card">
+              <h3>Criteria and verification</h3>
+              <p>Criteria describe outcomes ("the export streams 1 GB under 200 MB of memory"), not activities. The verification command must be able to fail. A filter that only matches tests that already pass doesn't count.</p>
+              <p class="say">"That command can't fail. Pick one that would."</p>
+            </article>
+            <article class="term-card">
+              <h3>The done guard</h3>
+              <p>Closing is refused unless every criterion is checked, someone other than the worker ran a passing verification, no child is open and no blocker targets the item. The refusal lists exactly what is missing.</p>
+              <p class="say">"Why won't 2.3 close?"</p>
+            </article>
+            <article class="term-card">
+              <h3>Red-check and force</h3>
+              <p>A red-check proves that a test can fail: revert the fix, watch it go red, then put the fix back. A force closes past the guard, needs a reason, and stays in the audit for good.</p>
+              <p class="say">"Red-check that test. Don't force anything."</p>
+            </article>
+          </div>
+          <figure class="shot">
+            <picture>
+              <source media="(prefers-color-scheme: light)" srcset="../assets/shots/dashboard-item-light.jpg">
+              <img src="../assets/shots/dashboard-item-dark.jpg" alt="Task 1.2's evidence tab: the worker reported done, and the only verification was run by that same worker." width="1530" height="784" loading="lazy">
+            </picture>
+            <figcaption>What the agent reported, next to what was verified, and by whom.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">What binds the work</p>
+        <h2>Say it once. Every brief remembers it.</h2>
+        <div class="terms">
+          <article class="term-card">
+            <h3>Binding rules</h3>
+            <p>A <b>red line</b> (never do X; do Y instead), a <b>command</b> ("tests run with pnpm test"), a <b>stack fact</b>, a <b>domain rule</b>, or <b>generated code</b> that is regenerated, never edited. Every brief in scope prints them with their ref.</p>
+            <p class="say">"Make it a red line: never push to main; open a PR."</p>
+          </article>
+          <article class="term-card">
+            <h3>Assumptions</h3>
+            <p>A decision taken on incomplete knowledge, with how sure the agent is, the cost of reversing it and when to look again. Past that point it shows up in every result until someone settles it.</p>
+            <p class="say">"Record that as an assumption. Confirm A2, here's the proof."</p>
+          </article>
+          <article class="term-card">
+            <h3>Notes</h3>
+            <p>A decision and its reason, a correction, a fact the next agent should not re-derive. A note can be addressed to an item, and whoever picks that item up reads it in their brief.</p>
+            <p class="say">"Leave a note on 3.1 for whoever does it."</p>
+          </article>
+          <article class="term-card">
+            <h3>Claims and roles</h3>
+            <p>Starting work takes a leased claim, so two sessions never silently do the same task. A worker reports and verifies; an orchestrator plans, judges and closes. The server enforces the roles.</p>
+            <p class="say">"You're the worker on this one. Don't close it."</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Phrases</p>
+        <h2>What you say, and what the agent does</h2>
+        <table class="phrases">
+          <thead><tr><th>You say</th><th>The agent</th></tr></thead>
+          <tbody>
+            <tr><td>"Where were we?"</td><td>reads the brief and tells you the goal, where things stand and the next step</td></tr>
+            <tr><td>"Work the loop."</td><td>takes the next ready item, does it, verifies it itself, closes it, and repeats until something needs you</td></tr>
+            <tr><td>"Plan this feature."</td><td>checks the code first, then writes a run with tasks, criteria, verify commands, rules and questions, and stops for your approval</td></tr>
+            <tr><td>"Defer it to the backlog."</td><td>moves the item to the backlog with your reason. Nothing is dropped</td></tr>
+            <tr><td>"Step back."</td><td>questions each open item against the current code and the goal, and proposes what to keep, rewrite, merge, move or cancel</td></tr>
+            <tr><td>"Realign the rules."</td><td>checks every binding rule against the code and your later decisions, and proposes what to keep, reword or retire</td></tr>
+            <tr><td>"Did we cheat?"</td><td>compares what was reported with what was verified, and lists every gap without changing anything</td></tr>
+            <tr><td>"What's blocking?"</td><td>lists every blocked item, what it waits on, and who or what could free it</td></tr>
+          </tbody>
+        </table>
+        <p class="section-lede" style="margin-top: 14px">Anything that changes many items at once is proposed first. The agent writes nothing until you say yes.</p>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">In practice</p>
+        <h2>Short conversations</h2>
+        <div class="convos">
+          <div class="convo">
+            <h3>The next morning</h3>
+            <p class="msg you">Where were we on checkout?</p>
+            <p class="msg ai"><i>(reads the brief)</i> Phase 2. 2.1 and 2.2 are done and verified, and 2.3 is ready. Assumption A2 is past its revisit date.</p>
+            <p class="msg you">Check A2, then carry on.</p>
+          </div>
+          <div class="convo">
+            <h3>A remark becomes a rule</h3>
+            <p class="msg you">Don't touch the generated client again. Regenerate it.</p>
+            <p class="msg ai">Shall I make that a red line? "Never edit src/gen/; run make gen."</p>
+            <p class="msg you">Yes.</p>
+            <p class="msg ai">Done. It's rule C4, and every brief prints it.</p>
+          </div>
+          <div class="convo">
+            <h3>Closing too early</h3>
+            <p class="msg you">Close the run.</p>
+            <p class="msg ai">The done guard refuses: a criterion on 2.5 is unchecked, and blocker F-03 is open. Fix F-03 and verify 2.5, or defer F-03 with a reason?</p>
+          </div>
+          <div class="convo">
+            <h3>Not the agent's call</h3>
+            <p class="msg you">Should deleted users keep their invoices? I don't know yet.</p>
+            <p class="msg ai">I made that question Q1 and blocked 4.2 on it. It's in your inbox.</p>
+            <p class="msg you">Keep them, anonymised.</p>
+            <p class="msg ai">Q1 is answered, the decision is recorded, and 4.2 is unblocked.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Words Workman doesn't use</p>
+        <h2>Some things simply can't happen</h2>
+        <ul class="never">
+          <li><b>Delete</b> Nothing is deleted. You cancel, supersede or archive, and the record stays.</li>
+          <li><b>Deferred</b> There's no pile where work goes to die. Deferring moves the item to a real place.</li>
+          <li><b>Done, trust me</b> "It's done, I checked" is a report. Done needs a verification someone else ran.</li>
+          <li><b>PLAN.md</b> Plans and ledgers go into Workman. <code>/workman:import</code> brings the old files in, minus the stale parts.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">Skills</p>
+        <h2>From one plan to a whole backlog</h2>
+        <div class="terms">
+          <article class="term-card"><h3><code>/workman:plan</code></h3><p>Write the plan into the record: a goal, phases, criteria and a verify command per task. Then it stops and waits for you.</p></article>
+          <article class="term-card"><h3><code>/workman:orchestrate</code></h3><p>Finish a plan too big for one context window. It delegates each task to a subagent, checks the result against the goal, and re-plans when needed.</p></article>
+          <article class="term-card"><h3><code>/workman:controller</code></h3><p>Work through a whole backlog. It briefs a fresh Claude for each unit, verifies what comes back itself, lands it and records the decision.</p></article>
+          <article class="term-card"><h3><code>/workman:agents</code></h3><p>Launch named background sessions, talk to them over READY, BLOCKED and DONE, and get woken when one is stuck.</p></article>
+          <article class="term-card"><h3><code>/workman:import</code></h3><p>Retire your plan files. It checks each item against the current code and imports only what is still true, with its source.</p></article>
+          <article class="term-card"><h3><code>/workman:setup</code></h3><p>Self-host in minutes: it pulls the image, starts Workman and Postgres in Docker, registers the server and proves that it answers.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="get" class="get">
+      <div class="wrap">
+        <h2>Get Workman</h2>
+        <div class="get-grid">
+          <article class="get-card">
+            <h3>Hosted <span class="tag">invite only for now</span></h3>
+            <p class="req">One server for every machine and every teammate, at work.supraman.ai. You sign in in the browser, so there's no token to paste.</p>
+            <pre class="term small"><code>claude mcp add --transport http --scope user \
+  workman https://work.supraman.ai/mcp</code></pre>
+            <p class="req">Then add the skills in Claude Code:</p>
+            <pre class="term small"><code>/plugin marketplace add getsupraman/workman
+/plugin install workman@supraman</code></pre>
+            <p class="req">Start a new session and ask "What's the brief?". On an empty server it walks you through your first project. Self-service sign-up, team invites and a free plan are coming.</p>
+          </article>
+          <article class="get-card">
+            <h3>Self-hosted <span class="tag">Docker</span></h3>
+            <p class="req">Install the plugin as on the left, then run:</p>
+            <pre class="term small"><code>/workman:setup</code></pre>
+            <p class="req">It writes a local <code>.env</code> with random tokens, pulls <code>ghcr.io/getsupraman/workman</code>, starts it with Postgres on <code>127.0.0.1:5290</code> and registers it with browser sign-in. The model never sees a token. It also backs up and restores the database.</p>
+            <a class="btn ghost" href="https://github.com/getsupraman/workman">Workman on GitHub</a>
+          </article>
+        </div>
+        <p class="section-lede" style="margin-top: 22px">Running many sessions? <a class="more" style="margin: 0" href="../supraman/">Supraman</a> signs each session it launches in to Workman and puts blocked items in its Inbox.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-row">
+      <span>© 2026 LarchSys des Larch Rene' · Via Waidach 21, 39030 Vandoies (BZ), Italy · P.IVA 03197520210</span>
+      <a href="../imprint/">Imprint</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="https://github.com/getsupraman">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>

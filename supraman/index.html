@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Supraman · One window for every Claude Code session</title>
+  <meta name="description" content="Supraman is a native Windows app for running many Claude Code sessions at once: every session on the machine in one tree, one Inbox for what needs you, terminal tabs that come back after a reboot, schedules on your own machine and sessions that message each other by name.">
+  <meta name="color-scheme" content="dark light">
+  <meta name="theme-color" content="#12151b" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f2f4f7" media="(prefers-color-scheme: light)">
+  <link rel="icon" href="../assets/brand/supraman.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/brand/supraman-1024.png" type="image/png" sizes="1024x1024">
+  <link rel="apple-touch-icon" href="../assets/brand/supraman-1024.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://supraman.ai/supraman/">
+  <meta property="og:title" content="Supraman · One window for every Claude Code session">
+  <meta property="og:description" content="Find every session, get it back after a reboot, schedule agent runs on your own machine, and let sessions talk by name. Native Rust, open source.">
+  <meta property="og:image" content="https://supraman.ai/assets/brand/social-card.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <header class="top">
+    <div class="wrap top-row">
+      <a class="brand" href="../" aria-label="Supraman home">
+        <picture>
+          <source media="(prefers-color-scheme: light)" srcset="../assets/brand/supraman-lockup-on-light.svg">
+          <img src="../assets/brand/supraman-lockup-on-dark.svg" alt="Supraman" width="164" height="38">
+        </picture>
+      </a>
+      <nav class="nav" aria-label="Main">
+        <a href="./" aria-current="page">Supraman</a>
+        <a href="../workman/">Workman</a>
+        <a href="../#coming">Coming</a>
+        <a class="nav-gh" href="#get">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="wrap">
+        <div class="mark">
+          <img src="../assets/brand/supraman.svg" alt="" width="56" height="56">
+          <p class="status"><span class="dot" aria-hidden="true"></span>Supraman 0.1 · Windows 10/11 · GPL-3.0</p>
+        </div>
+        <h1>One window for every <span class="amber">Claude Code session.</span></h1>
+        <p class="lede">Supraman runs above Claude Code. It finds every session on your machine, keeps the ones you want running, brings them back after a reboot and tells you which ones need you. It doesn't replace the agent. It makes running ten of them feel like running one.</p>
+        <div class="ctas">
+          <a class="btn primary" href="https://github.com/getsupraman/supraman/releases/latest">Download for Windows</a>
+          <a class="btn ghost" href="#features">See what it does</a>
+        </div>
+      </div>
+      <div class="wrap" style="margin-top: 36px">
+        <figure class="shot">
+          <img src="../assets/shots/supraman-main.png" alt="The Supraman window: an Inbox with a Workman question and a blocked Workman item above a tree of sessions grouped by workspace and repo, one of them blocked on a permission prompt." width="2122" height="1241" loading="lazy">
+          <figcaption>The Inbox above the session tree. One session waits on a permission prompt. Fixture data, captured by Supraman's own selftest.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="features" class="block alt">
+      <div class="wrap">
+        <p class="kicker">See everything</p>
+        <h2>Every session, where it lives, and what it's doing</h2>
+        <div class="split">
+          <div class="feat">
+            <p>Supraman lists every Claude Code session on the machine, background and interactive, including the ones you started somewhere else. They are grouped by <b>workspace</b>, repo and worktree, each with a live state: running, idle, blocked or stopped.</p>
+            <ul>
+              <li><b>Search</b> by session name, id, workspace or folder (Ctrl+Shift+E). There's no need to remember a cwd or a UUID.</li>
+              <li><b>Details</b> for each session: its kind, state, who started it, its folder and working directory, and its transcript.</li>
+              <li><b>One click</b> to attach, stop, copy the name or id, or star it.</li>
+            </ul>
+          </div>
+          <figure class="shot">
+            <img src="../assets/shots/supraman-details.png" alt="A session's Details tab: name, kind, state, start time, who started it, workspace, folder and working directory, with buttons to attach, stop, copy name, copy id and star." width="2122" height="1241" loading="lazy">
+            <figcaption>A session's Details tab.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">Never lose a session</p>
+        <h2>Reboot whenever you like</h2>
+        <div class="terms">
+          <article class="term-card">
+            <h3>Terminal tabs that come back</h3>
+            <p>Attach to any session in a tab, or press <b>+</b> for a new shell and start <code>claude</code> in it. When Supraman restarts, your tabs reopen as resumes, exactly where they were.</p>
+          </article>
+          <article class="term-card">
+            <h3>A supervisor for the sessions you want</h3>
+            <p>A workspace says which sessions it wants running. Supraman launches them in the background, resumes one that stopped and reports one that fails to start. A cap (<code>busy ≤ 20</code>) limits how many work at once.</p>
+          </article>
+          <article class="term-card">
+            <h3>One Inbox for what needs you</h3>
+            <p>A permission prompt, a question from a session, a failed launch, a failed scheduled run, a Workman item blocked on you. You see it all in one place instead of hunting through terminals.</p>
+          </article>
+          <article class="term-card">
+            <h3>Signed self-update</h3>
+            <p>Supraman checks GitHub Releases, verifies each update against a signed manifest (ed25519), swaps itself in and restarts. Your sessions keep running in the background meanwhile.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Loop engineering</p>
+        <h2>Schedules that run on your machine, with your tools</h2>
+        <div class="split">
+          <div class="feat">
+            <p>Cloud routines can't see your repo's <code>.env</code>, your Docker or your local tools. Supraman's schedules run right here: a slash command or a prompt, on a timer, in the right folder.</p>
+            <ul>
+              <li><b>Ask a session</b> to schedule something, and the plugin's scheduler skill adds it for you.</li>
+              <li><b>Nothing runs</b> until you click Approve in the window. A changed schedule waits for approval again.</li>
+              <li><b>Caps</b> on runtime and tokens, a permission profile (read, edit or auto), and a choice of what happens when runs overlap or a fire was missed.</li>
+              <li><b>Dry-run</b> shows the prompt, the exact command line, the permissions and the next three fires. Run history and failures land in the Inbox.</li>
+            </ul>
+          </div>
+          <pre class="term" aria-label="Adding a schedule with sm"><code><span class="m"># every weekday morning, read-only</span>
+<span class="c">sm</span> schedule add --id triage --name "Triage failures" \
+   --every <span class="s">'weekly mon,tue,wed,thu,fri 07:00'</span> \
+   --command /replay-failures \
+   --profile read --max-runtime 30m
+
+<span class="c">sm</span> schedule dry-run triage
+<span class="m"># → the prompt, the claude argv, the next 3 fires</span>
+<span class="m"># → pending until you click Approve</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">Sessions that cooperate</p>
+        <h2>Address any session by its name</h2>
+        <div class="split">
+          <div class="feat">
+            <p>With a dozen sessions open, getting one to talk to another starts with guessing its real name. Supraman shows every session's name, and the sessions it launches follow one pattern: <code>fm-&lt;workspace&gt;-&lt;repo&gt;</code>.</p>
+            <ul>
+              <li><b>You to a session:</b> type into the task box, Approve or Reply in the Inbox, or use <code>sm send</code>.</li>
+              <li><b>A session to you:</b> <code>sm tell</code> puts its message in front of you.</li>
+              <li><b>Session to session:</b> each can message another directly by name. A relay starts on demand when a direct send isn't possible.</li>
+            </ul>
+          </div>
+          <pre class="term" aria-label="Messaging with sm"><code><span class="c">sm</span> roster shop
+<span class="m"># each session's name, role, health, id and cwd</span>
+
+<span class="c">sm</span> send shop fm-shop-web <span class="s">"API v2 is merged, rebase."</span>
+<span class="m"># sent direct</span>
+
+<span class="m"># inside a session:</span>
+<span class="c">sm</span> tell <span class="s">"Migration done, 412 tests pass."</span></code></pre>
+        </div>
+      </div>
+    </section>
+
+    <section class="block alt">
+      <div class="wrap">
+        <p class="kicker">Better with Workman</p>
+        <h2>Sessions that remember what they did</h2>
+        <div class="split">
+          <div class="feat">
+            <p>Sign in to <a class="more" style="margin: 0" href="../workman/">Workman</a> once, in Settings. Every session Supraman launches then gets its own Workman identity, so plans, claims and evidence are recorded per session.</p>
+            <ul>
+              <li><b>The Work tab</b> shows a workspace's runs, who works on what, and what's blocked.</li>
+              <li><b>The Inbox</b> shows Workman questions and blocked items next to your sessions' prompts.</li>
+              <li><b>Optional:</b> without Workman, everything else on this page still works.</li>
+            </ul>
+          </div>
+          <div class="feat">
+            <p class="kicker" style="margin: 0">Built native</p>
+            <ul class="facts">
+              <li><b>154&nbsp;MB</b><span>working set of a Supraman that ran all day with many tabs open</span></li>
+              <li><b>29&nbsp;MB</b><span>one executable, Rust on gpui (the engine behind Zed). No Electron</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block">
+      <div class="wrap">
+        <p class="kicker">The command line</p>
+        <h2><code>sm</code>: everything the window does, from a shell</h2>
+        <p class="section-lede">Handy for scripts, and for the sessions themselves.</p>
+        <pre class="term" style="margin-top: 14px" aria-label="sm commands"><code><span class="c">sm</span> workspace add &lt;dir&gt;          <span class="m"># a folder of repos becomes a workspace</span>
+<span class="c">sm</span> sessions [--workspace &lt;w&gt;]   <span class="m"># every session, with its state</span>
+<span class="c">sm</span> want &lt;workspace&gt; &lt;repo&gt;      <span class="m"># keep the repo's session running</span>
+<span class="c">sm</span> roster &lt;workspace&gt;           <span class="m"># names, roles, health, cwd</span>
+<span class="c">sm</span> send &lt;workspace&gt; &lt;to&gt; &lt;body&gt; <span class="m"># message a session by name</span>
+<span class="c">sm</span> tell &lt;body&gt;                  <span class="m"># from a session: a message to you</span>
+<span class="c">sm</span> schedule add|list|dry-run    <span class="m"># recurring work, approved in the window</span>
+<span class="c">sm</span> work overview &lt;workspace&gt;    <span class="m"># the workspace's Workman project</span></code></pre>
+      </div>
+    </section>
+
+    <section id="get" class="get">
+      <div class="wrap">
+        <h2>Download Supraman</h2>
+        <div class="get-grid">
+          <article class="get-card">
+            <h3>Install <span class="tag">Windows 10/11 · x64</span></h3>
+            <ol class="mini">
+              <li>Download the zip from <a href="https://github.com/getsupraman/supraman/releases/latest">GitHub Releases</a>.</li>
+              <li>Unblock it in the file's Properties, then extract it anywhere, for example <code>C:\Tools\supraman</code>. There's no installer. The exe isn't code-signed yet, so SmartScreen may ask once.</li>
+              <li>Run <code>supraman.exe</code>.</li>
+            </ol>
+            <p class="req">Needs the Claude Code CLI 2.1.308 or newer on your PATH, and PowerShell 7 for terminal tabs. Supraman keeps its state in <code>%APPDATA%\Supraman</code>.</p>
+            <a class="btn primary" href="https://github.com/getsupraman/supraman/releases/latest">Download Supraman</a>
+          </article>
+          <article class="get-card">
+            <h3>First steps</h3>
+            <ol class="mini">
+              <li><b>Add a workspace:</b> pick a folder that holds your repos. Supraman finds the git repos in it.</li>
+              <li><b>Open a session:</b> press <b>+</b> and run <code>claude</code>, or attach to one in the tree. Sessions you start elsewhere show up too.</li>
+              <li><b>Sign in to Workman</b> (optional) in Settings → Workman.</li>
+              <li><b>Schedule work</b> (optional): ask a session, then click Approve.</li>
+            </ol>
+            <p class="req">Coming next: Gitman and Fileman, then macOS and Linux. <a href="../#coming">See the roadmap.</a></p>
+            <a class="btn ghost" href="https://github.com/getsupraman/supraman">Source on GitHub</a>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot-row">
+      <span>© 2026 LarchSys des Larch Rene' · Via Waidach 21, 39030 Vandoies (BZ), Italy · P.IVA 03197520210</span>
+      <a href="../imprint/">Imprint</a>
+      <a href="../privacy/">Privacy</a>
+      <a href="https://github.com/getsupraman">GitHub</a>
+    </div>
+  </footer>
+</body>
+</html>
