@@ -25,19 +25,3 @@ if (story && fill) {
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
   update();
 }
-
-// Graph / Session swap in the review chapter.
-document.querySelectorAll('[data-swap-for]').forEach((group) => {
-  const frame = document.getElementById(group.dataset.swapFor);
-  const figure = frame?.closest('figure');
-  if (!frame || !figure) return;
-  const show = (i) => {
-    [...frame.children].forEach((img, n) => (img.hidden = n !== i));
-    group.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.swap === String(i))));
-    figure.querySelectorAll('.pen, .note').forEach((el) => (el.style.visibility = i === 0 ? '' : 'hidden'));
-  };
-  group.addEventListener('click', (e) => {
-    const b = e.target.closest('button[data-swap]');
-    if (b) show(Number(b.dataset.swap));
-  });
-});

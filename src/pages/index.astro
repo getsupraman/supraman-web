@@ -77,27 +77,24 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
         </figure>
       </Chapter>
 
-      <Chapter id="review">
+      <Chapter id="review" wide>
         <Fragment slot="text">
           <T k="ch3.title" as="h2" id="review-h" />
           <T k="ch3.body" as="p" />
           <T k="ch3.undo" as="p" class="aside" />
-          <div class="toggle" role="group" data-swap-for="review-swap">
-            <button type="button" aria-pressed="true" data-swap="0">{t('ch3.toggle.graph')}</button>
-            <button type="button" aria-pressed="false" data-swap="1">{t('ch3.toggle.session')}</button>
-          </div>
         </Fragment>
         <figure class="shot" slot="visual">
-          <div class="frame swap" id="review-swap">
-            <img src={shot('gitman-graph.png')} alt={t('ch3.alt')} width="1614" height="1051" loading="lazy" decoding="async" />
-            <img src={shot('gitman-session.png')} alt={t('ch3.alt2')} width="1296" height="1105" loading="lazy" decoding="async" hidden />
+          <div class="frame">
+            <img src={shot('supraman-git.png')} alt={t('ch3.alt')} width="2962" height="1241" loading="lazy" decoding="async" />
           </div>
-          <svg class="pen ink" viewBox="0 0 1614 1051" preserveAspectRatio="none" aria-hidden="true" data-swap-pen="0">
-            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M640 344 C 520 330, 400 336, 392 360 C 386 384, 470 392, 600 388 C 690 386, 700 362, 650 346" />
-            <path pathLength="1" style="--d:1.2s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M900 300 C 820 310, 760 330, 700 352 M716 330 L698 352 L726 362" />
+          <svg class="pen ink" viewBox="0 0 2962 1241" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M1300 188 C 1100 178, 958 190, 956 230 C 954 270, 1100 280, 1300 274 C 1420 270, 1432 196, 1330 188" />
+            <path pathLength="1" style="--d:1.2s;--dur:.6s" stroke="#f5a524" stroke-width="7" d="M1470 236 C 1450 236, 1430 236, 1408 236 M1430 218 L1406 236 L1432 254" />
+            <path pathLength="1" style="--d:1.8s" stroke="#f5a524" stroke-width="7" d="M1200 350 C 1080 344, 990 354, 988 378 C 986 402, 1090 408, 1220 404 C 1312 400, 1320 360, 1240 352" />
+            <path pathLength="1" style="--d:2.4s;--dur:.6s" stroke="#f5a524" stroke-width="7" d="M1470 384 C 1420 382, 1370 380, 1326 380 M1348 362 L1324 380 L1350 398" />
           </svg>
-          <p class="note" style="left:56%;top:22%;--d:1.4s">{t('ch3.note.agent')}</p>
-          <p class="note" style="left:44%;top:46%;--d:2s;--rot:3deg">{t('ch3.note.click')}</p>
+          <p class="note" style="left:50.5%;top:14%;--d:1.4s;--rot:-2deg">{t('ch3.note.click')}</p>
+          <p class="note" style="left:50.5%;top:27.5%;--d:2.6s;--rot:2deg">{t('ch3.note.agent')}</p>
         </figure>
       </Chapter>
 

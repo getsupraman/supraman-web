@@ -118,12 +118,6 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 .shot img { width: 100%; height: auto; }
 .shot .pen { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .shot .note { position: absolute; max-width: 15em; text-shadow: 0 1px 0 #181818, 0 0 12px #181818; }
-.shot .swap > * { transition: opacity .5s var(--ease); }
-.shot .swap > * + * { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; object-position: right top; background: var(--desk); }
-.shot .swap > [hidden] { display: block; opacity: 0; visibility: hidden; }
-.toggle { display: inline-flex; margin-top: 16px; border: 1px solid var(--line); border-radius: 8px; padding: 3px; gap: 3px; }
-.toggle button { font: 600 14px var(--sans); color: var(--muted); background: none; border: 0; padding: 7px 14px; border-radius: 6px; cursor: pointer; }
-.toggle button[aria-pressed="true"] { background: var(--raise); color: var(--chalk); }
 
 /* the drag demo: a small Supraman, animated with CSS only */
 .drag { --cycle: 9s; }
@@ -245,3 +239,9 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
   .shot .note { font-size: 15px; }
   .claim .doubt { position: static; margin-top: 10px; }
 }
+
+/* a wide screenshot gets the whole row: text above, picture below */
+.chapter.wide .ch-grid { grid-template-columns: 1fr; gap: 36px; }
+.chapter.wide .ch-text { max-width: 760px; }
+.chapter.wide .ch-text p { max-width: 40em; }
+@media (max-width: 760px) { .chapter.wide .shot .note { display: none; } }

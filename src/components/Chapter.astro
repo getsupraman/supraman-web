@@ -1,9 +1,9 @@
 ---
 import Bot from './Bot.astro';
-interface Props { id: string; flip?: boolean }
-const { id, flip = false } = Astro.props;
+interface Props { id: string; flip?: boolean; wide?: boolean }
+const { id, flip = false, wide = false } = Astro.props;
 ---
-<section class:list={['chapter', { flip }]} id={id} data-reveal aria-labelledby={`${id}-h`}>
+<section class:list={['chapter', { flip, wide }]} id={id} data-reveal aria-labelledby={`${id}-h`}>
   <span class="node"><Bot /></span>
   <div class="ch-grid">
     <div class="ch-text"><slot name="text" /></div>
