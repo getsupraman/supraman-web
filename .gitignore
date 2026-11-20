@@ -4,7 +4,4 @@ dist/
 .cms/
 .env*
 
-# private dev placeholders until the selftest shots arrive; never commit
-public/shots/gitman-graph.png
-public/shots/gitman-session.png
 assets/shots/new/
