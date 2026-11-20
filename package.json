@@ -1,0 +1,15 @@
+{
+  "name": "supraman-web",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "cms dev",
+    "build": "cms build --all",
+    "check": "cms build --all --check"
+  },
+  "dependencies": {
+    "@cms/cli": "1.7.0",
+    "@cms/kit": "1.7.0",
+    "astro": "7.4.12"
+  }
+}

@@ -1,0 +1,15 @@
+---
+import { t } from '@cms/kit/content';
+const base = import.meta.env.BASE_URL;
+---
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-row">
+      <span class="legal">© 2026 {t('foot.legal')}</span>
+      <a href={`${base}imprint/`}>{t('foot.imprint')}</a>
+      <a href={`${base}privacy/`}>{t('foot.privacy')}</a>
+      <a href="https://github.com/getsupraman">{t('foot.github')}</a>
+    </div>
+    <p class="tm">{t('foot.claude')}</p>
+  </div>
+</footer>

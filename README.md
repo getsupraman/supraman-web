@@ -1,19 +1,14 @@
 # supraman-web
 
-The supraman.ai landing page. Static files, no build step: `index.html`, `assets/site.css`,
-the brand files in `assets/brand/` (copied from the brand kit at `P:\Projects\LarchSys\getsupraman\brand`)
-and Archivo, subset to Latin and self-hosted in `assets/fonts/` (SIL OFL 1.1, license beside it).
-The page loads nothing from other hosts and sets no cookies.
+The supraman.ai site: an Astro site built and hosted by the LarchSys CMS (tenant `supraman`, site `main`).
+Every visible string is a CMS content key; the code holds no text. Read `node_modules/@cms/kit/README.md` first.
 
-Preview locally: `python -m http.server 8765 --bind 127.0.0.1`, then open http://127.0.0.1:8765/.
+- `src/pages/index.astro`: the story (hero, six chapters on a commit-graph spine, little things, get it).
+- `src/styles/global.css`: colours from Supraman's default theme, so screenshots sit in the page.
+- `src/scripts/site.js`: reveal-on-scroll (hand-drawn strokes draw themselves), the spine, the Graph/Session swap.
+- `public/shots/`: screenshots. Fixture or seed data only, never real projects, hosts or names.
 
-## Deploy (GitHub Pages)
-
-`CNAME` already holds `supraman.ai`. Push this folder as a repo under getsupraman, enable Pages on
-`main` / root, then at the registrar:
-
-- apex `supraman.ai`: A records 185.199.108.153, 185.199.109.153, 185.199.110.153, 185.199.111.153
-- `www.supraman.ai`: CNAME `getsupraman.github.io`
-
-Turn on "Enforce HTTPS" once the certificate is issued, and verify the domain for the org
-(Settings → Pages → Add a domain) so no other account can claim it.
+Work: put a token with `git:read` (and `npm:read`) in `.cms/token` or `CMS_TOKEN`, `pnpm install`, then
+`pnpm dev` (pulls the draft content, runs astro) or `pnpm check` (the build and the check the CMS runs).
+Text changes: `content_set_many` (or `cms content push`), then `publish`; no commit needed.
+Code changes: commit and `git push origin main`; the CMS builds it, `preview_get` shows it, `publish` makes it live.

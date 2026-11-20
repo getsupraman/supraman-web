@@ -1,0 +1,13 @@
+---
+import Base from '../layouts/Base.astro';
+import { t } from '@cms/kit/content';
+import { T } from '@cms/kit/components';
+interface Props { name: 'imprint' | 'privacy' }
+const { name } = Astro.props;
+---
+<Base title={t(`${name}.title`)}>
+  <article class="wrap legal-page">
+    <T k={`${name}.h`} as="h1" />
+    <T k={`${name}.body`} as="div" class="body" />
+  </article>
+</Base>

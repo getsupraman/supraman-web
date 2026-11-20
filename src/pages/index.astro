@@ -1,0 +1,234 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/Hero.astro';
+import Chapter from '../components/Chapter.astro';
+import { t } from '@cms/kit/content';
+import { T } from '@cms/kit/components';
+
+const base = import.meta.env.BASE_URL;
+const shot = (name: string) => `${base}shots/${name}`;
+const typed = t('ch2.demo.typed');
+const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 'native', 'update'];
+---
+<Base title={t('site.title')}>
+  <Hero />
+
+  <div class="story" id="story" aria-label={t('spine.label')}>
+    <div class="spine" aria-hidden="true"><div class="spine-fill"></div></div>
+    <div class="wrap">
+
+      <Chapter id="crew">
+        <Fragment slot="text">
+          <T k="ch1.title" as="h2" id="crew-h" />
+          <T k="ch1.body" as="p" />
+          <div class="sketch" aria-hidden="true">
+            <svg viewBox="0 0 360 230">
+              <g class="ink" stroke="#8b8b8b" stroke-width="2">
+                <path pathLength="1" style="--d:.1s" d="M18 42 L168 38 L171 132 L21 136 Z M19 60 L169 57" />
+                <path pathLength="1" style="--d:.35s" d="M120 72 L280 76 L277 170 L118 166 Z M119 90 L279 94" />
+                <path pathLength="1" style="--d:.6s" d="M58 122 L208 118 L212 208 L60 212 Z M59 140 L210 136" />
+              </g>
+              <g class="ink" stroke="#f5a524" stroke-width="2.4">
+                <path pathLength="1" style="--d:1.1s;--dur:1.6s" d="M232 196 C 300 220, 350 170, 318 130 S 220 120, 262 90 S 360 70, 330 30 S 250 10, 236 40" />
+              </g>
+              <text x="250" y="222" fill="#f5a524" font-family="Kalam, cursive" font-size="17" class="svg-note" transform="rotate(-3 250 222)">{t('ch1.sk.where')}</text>
+              <text x="70" y="182" fill="#8b8b8b" font-family="Kalam, cursive" font-size="16" transform="rotate(-2 70 182)">{t('ch1.sk.lost')}</text>
+            </svg>
+          </div>
+        </Fragment>
+        <figure class="shot" slot="visual">
+          <div class="frame">
+            <img src={shot('supraman-main.png')} alt={t('ch1.alt')} width="2122" height="1241" loading="lazy" decoding="async" />
+          </div>
+          <svg class="pen ink" viewBox="0 0 2122 1241" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M640 662 C 420 640, 60 646, 30 690 C 8 730, 220 748, 450 744 C 640 742, 720 726, 712 694 C 706 670, 660 660, 600 660" />
+            <path pathLength="1" style="--d:1.2s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M960 640 C 880 650, 800 670, 730 690 M748 666 L728 690 L758 704" />
+            <path pathLength="1" style="--d:1.8s" stroke="#f5a524" stroke-width="7" d="M662 520 C 690 560, 676 640, 690 700 C 700 760, 670 860, 686 960" />
+            <path pathLength="1" style="--d:2.4s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M900 140 C 840 120, 790 100, 752 84 M770 70 L748 84 L770 102" />
+          </svg>
+          <p class="note" style="left:46%;top:47%;--d:1.4s">{t('ch1.note.waiting')}</p>
+          <p class="note" style="left:35%;top:70%;--d:2.1s;--rot:-4deg">{t('ch1.note.tree')}</p>
+          <p class="note" style="left:43%;top:9%;--d:2.7s;--rot:2deg">{t('ch1.note.reboot')}</p>
+        </figure>
+      </Chapter>
+
+      <Chapter id="talk" flip>
+        <Fragment slot="text">
+          <T k="ch2.title" as="h2" id="talk-h" />
+          <T k="ch2.body" as="p" />
+        </Fragment>
+        <figure class="shot drag" slot="visual" data-reveal role="img" aria-label={t('ch2.demo.label')}>
+          <div class="frame app" aria-hidden="true" style={`--n:${typed.length};--dx:150px;--dy:120px`}>
+            <div class="app-tabs">
+              <span class="app-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
+              <span class="app-tab on"><span class="dot idle"></span>{t('ch2.demo.b')}</span>
+              <span class="app-tab"><span class="dot idle"></span>{t('ch2.demo.c')}</span>
+            </div>
+            <div class="app-term">
+              <div class="prompt"><span class="dim">&gt;</span>
+                <span class="ask-wrap">{t('ch2.demo.ask')} <span class="pasted">{t('ch2.demo.a')}</span> <span class="typed">{typed}</span></span><span class="caret"></span>
+              </div>
+              <div class="dropzone">{t('ch2.demo.drop')}</div>
+            </div>
+            <span class="ghost-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
+            <svg class="cursor" viewBox="0 0 18 22" style="left:12px;top:10px"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12 19.4 L9 13 L15 13 Z" fill="#ececec" stroke="#181818" stroke-width="1.4" stroke-linejoin="round" /></svg>
+          </div>
+          <p class="note" style="right:4%;bottom:-38px;--d:.6s;--rot:-3deg">{t('ch2.note')}</p>
+        </figure>
+      </Chapter>
+
+      <Chapter id="review">
+        <Fragment slot="text">
+          <T k="ch3.title" as="h2" id="review-h" />
+          <T k="ch3.body" as="p" />
+          <T k="ch3.undo" as="p" class="aside" />
+          <div class="toggle" role="group" data-swap-for="review-swap">
+            <button type="button" aria-pressed="true" data-swap="0">{t('ch3.toggle.graph')}</button>
+            <button type="button" aria-pressed="false" data-swap="1">{t('ch3.toggle.session')}</button>
+          </div>
+        </Fragment>
+        <figure class="shot" slot="visual">
+          <div class="frame swap" id="review-swap">
+            <img src={shot('gitman-graph.png')} alt={t('ch3.alt')} width="1614" height="1051" loading="lazy" decoding="async" />
+            <img src={shot('gitman-session.png')} alt={t('ch3.alt2')} width="1296" height="1105" loading="lazy" decoding="async" hidden />
+          </div>
+          <svg class="pen ink" viewBox="0 0 1614 1051" preserveAspectRatio="none" aria-hidden="true" data-swap-pen="0">
+            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M640 344 C 520 330, 400 336, 392 360 C 386 384, 470 392, 600 388 C 690 386, 700 362, 650 346" />
+            <path pathLength="1" style="--d:1.2s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M900 300 C 820 310, 760 330, 700 352 M716 330 L698 352 L726 362" />
+          </svg>
+          <p class="note" style="left:56%;top:22%;--d:1.4s">{t('ch3.note.agent')}</p>
+          <p class="note" style="left:44%;top:46%;--d:2s;--rot:3deg">{t('ch3.note.click')}</p>
+        </figure>
+      </Chapter>
+
+      <Chapter id="proof" flip>
+        <Fragment slot="text">
+          <T k="ch4.title" as="h2" id="proof-h" />
+          <T k="ch4.body" as="p" />
+        </Fragment>
+        <div slot="visual">
+          <figure class="term proof-term" data-reveal role="img" aria-label={t('ch4.term.label')} style="margin:0">
+            <div class="term-body" aria-hidden="true">
+              <div class="ln" style="--d:.1s"><span class="gt">&gt;</span><span>{t('ch4.term.l1')}</span></div>
+              <div class="ln" style="--d:.6s"><span class="bad">✕</span><span class="bad">{t('ch4.term.l2')}</span></div>
+              <div class="ln ind" style="--d:.9s"><span class="dim">-</span> {t('ch4.term.l3')}</div>
+              <div class="ln ind" style="--d:1.1s"><span class="dim">-</span> {t('ch4.term.l4')}</div>
+              <div class="ln ind" style="--d:1.4s;color:#4daafc">{t('ch4.term.l5')}</div>
+              <div class="gap"></div>
+              <div class="ln" style="--d:2.2s"><span class="gt">&gt;</span><span>{t('ch4.term.l6')}</span></div>
+              <div class="ln ind ok" style="--d:2.8s">{t('ch4.term.l7')}</div>
+              <div class="ln" style="--d:3.4s"><span class="gt">&gt;</span><span>{t('ch4.term.l8')}</span></div>
+              <div class="ln ok" style="--d:3.9s"><span>✓</span><span>{t('ch4.term.l9')}</span></div>
+            </div>
+          </figure>
+          <figure class="shot dash-shot">
+            <div class="frame"><img src={shot('dashboard-overview-dark.jpg')} alt={t('ch4.alt')} width="1530" height="784" loading="lazy" decoding="async" /></div>
+            <p class="note" style="right:3%;bottom:-48px;--d:.5s;--rot:-2deg">{t('ch4.note')}</p>
+          </figure>
+        </div>
+      </Chapter>
+
+      <Chapter id="memory">
+        <Fragment slot="text">
+          <T k="ch5.title" as="h2" id="memory-h" />
+          <T k="ch5.body" as="p" />
+        </Fragment>
+        <figure class="shot memory" slot="visual" role="img" aria-label={t('ch5.sk.label')}>
+          <svg viewBox="0 0 520 330" aria-hidden="true" style="overflow:visible">
+            <text x="24" y="38" fill="#8b8b8b" font-family="Archivo, sans-serif" font-size="15">{t('ch5.sk.context')}</text>
+            <rect class="ctx-fill" x="24" y="50" width="330" height="34" rx="6" fill="#4daafc" opacity=".55" />
+            <g class="ink" stroke="#cccccc" stroke-width="2"><path pathLength="1" d="M24 50 L356 48 L355 85 L23 84 Z" /></g>
+            <text class="ctx-cut" x="372" y="74" fill="#f0787a" font-family="Kalam, cursive" font-size="20">{t('ch5.sk.compacted')}</text>
+            <text class="ctx-cut" x="40" y="128" fill="#8b8b8b" font-family="Kalam, cursive" font-size="19" transform="rotate(-2 40 128)" style="transition-delay:2.4s">{t('ch5.sk.forgot')}</text>
+            <g class="ink" stroke="#f5a524" stroke-width="2.4">
+              <path pathLength="1" style="--d:2.8s" d="M40 160 L496 156 L500 318 L44 322 Z" />
+              <path pathLength="1" style="--d:3.4s;--dur:.6s" d="M60 222 L480 219 M60 268 L480 265" />
+            </g>
+            <text class="ctx-brief" x="62" y="196" fill="#f5a524" font-family="Cascadia Code, monospace" font-size="17">{t('ch5.sk.brief')}</text>
+            <g class="ctx-brief" font-family="Archivo, sans-serif" font-size="16">
+              <text x="62" y="246" fill="#8b8b8b">{t('ch5.sk.goal')}</text><text x="160" y="246" fill="#ece7d8">{t('ch5.sk.goal_v')}</text>
+              <text x="62" y="292" fill="#8b8b8b">{t('ch5.sk.rules')}</text><text x="160" y="292" fill="#ece7d8">{t('ch5.sk.rules_v')}</text>
+              <text x="330" y="292" fill="#8b8b8b">{t('ch5.sk.next')}</text><text x="376" y="292" fill="#4daafc" font-family="Cascadia Code, monospace" font-size="14">{t('ch5.sk.next_v')}</text>
+            </g>
+          </svg>
+        </figure>
+      </Chapter>
+
+      <Chapter id="loops" flip>
+        <Fragment slot="text">
+          <T k="ch6.title" as="h2" id="loops-h" />
+          <T k="ch6.body" as="p" />
+          <pre class="code"><span class="c">{t('ch6.code.c1')}</span>
+<span class="k">{t('ch6.code.l1')}</span> \
+  {t('ch6.code.l2')} \
+  {t('ch6.code.l3')}
+<span class="c">{t('ch6.code.c2')}</span></pre>
+        </Fragment>
+        <figure class="shot loops" slot="visual" role="img" aria-label={t('ch6.sk.label')}>
+          <svg viewBox="0 0 520 330" aria-hidden="true" style="overflow:visible">
+            <g class="ink" stroke="#ece7d8" stroke-width="2.2">
+              <path pathLength="1" style="--d:.1s;--dur:1.4s" d="M150 40 C 90 50, 64 120, 100 166 C 132 206, 196 204, 226 170 C 186 178, 140 156, 130 112 C 122 76, 132 52, 150 40 Z" />
+              <path pathLength="1" style="--d:1s;--dur:.4s" d="M300 50 l6 0 M303 47 l0 6 M380 96 l6 0 M383 93 l0 6 M262 120 l5 0 M264 117 l0 5" />
+            </g>
+            <g class="ink" stroke="#4daafc" stroke-width="2.4">
+              <path pathLength="1" style="--d:.8s" d="M420 70 C 470 70, 496 110, 492 150 C 488 196, 450 222, 412 220 C 368 218, 340 186, 342 144 C 344 100, 376 70, 420 70 Z" />
+              <path pathLength="1" style="--d:1.6s;--dur:.5s" d="M418 146 L418 102 M418 146 L392 168" />
+            </g>
+            <g class="ink" stroke="#f5a524" stroke-width="2.6">
+              <path pathLength="1" style="--d:2s" d="M170 252 L346 248 C 358 248, 362 256, 362 266 L362 286 C 362 296, 356 302, 346 302 L172 304 C 160 304, 154 298, 154 286 L154 266 C 154 256, 160 252, 170 252 Z" />
+              <path pathLength="1" style="--d:3s;--dur:.5s" d="M378 272 L392 288 L420 250" />
+            </g>
+            <text class="ctx-brief" x="258" y="284" text-anchor="middle" fill="#f5a524" font-family="Archivo, sans-serif" font-weight="700" font-size="20" style="transition-delay:2.6s">{t('ch6.sk.approve')}</text>
+          </svg>
+          <p class="note" style="left:2%;bottom:-6px;--d:3.2s;--rot:-3deg">{t('ch6.sk.note')}</p>
+        </figure>
+      </Chapter>
+    </div>
+  </div>
+
+  <section class="little" id="little" aria-labelledby="little-h">
+    <div class="wrap" data-reveal>
+      <T k="little.title" as="h2" id="little-h" />
+      <T k="little.lede" as="p" class="sub" />
+      <ul class="things">
+        {little.map((k) => (
+          <li><b>{t(`little.${k}.t`)}</b><span>{t(`little.${k}.d`)}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="get" id="get" aria-labelledby="get-h">
+    <div class="wrap">
+      <T k="get.title" as="h2" id="get-h" />
+      <T k="get.lede" as="p" class="lede" />
+      <div class="get-grid">
+        <div class="get-col">
+          <h3><img src={`${base}brand/supraman.svg`} alt="" width="40" height="40" />{t('get.sm.name')}</h3>
+          <p class="meta">{t('get.sm.meta')}</p>
+          <ol>
+            <li>{t('get.sm.s1')}</li>
+            <li>{t('get.sm.s2')}</li>
+            <li>{t('get.sm.s3')}</li>
+          </ol>
+          <p class="req">{t('get.sm.req')}</p>
+          <a class="btn primary" href="https://github.com/getsupraman/supraman/releases/latest">{t('get.sm.cta')}</a>
+        </div>
+        <div class="get-col">
+          <h3><img src={`${base}brand/workman.svg`} alt="" width="40" height="40" />{t('get.wm.name')}</h3>
+          <p class="meta">{t('get.wm.meta')}</p>
+          <p>{t('get.wm.s1')}</p>
+          <pre><code>{t('get.wm.code1')}
+{t('get.wm.code2')}</code></pre>
+          <p>{t('get.wm.s2')}</p>
+          <pre><code>{t('get.wm.code3')}</code></pre>
+          <p class="req">{t('get.wm.req')}</p>
+          <a class="btn ghost" href="https://github.com/getsupraman/workman">{t('get.wm.cta')}</a>
+        </div>
+      </div>
+      <div class="star">
+        <a class="btn ghost" href="https://github.com/getsupraman">{t('get.star')}</a>
+      </div>
+    </div>
+  </section>
+</Base>
