@@ -264,3 +264,7 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 .loops .doodle { position: absolute; top: -64px; right: -40px; width: 190px; overflow: visible; pointer-events: none; }
 @media (max-width: 640px) { .loops .doodle { width: 120px; top: -44px; right: -8px; } }
 
+
+/* a tall sidebar shot: the picture takes the left 57.5%, its pen notes stand beside it on the page */
+.side-notes { max-width: 680px; margin-inline: auto; }
+.side-notes .frame { width: 57.5%; }

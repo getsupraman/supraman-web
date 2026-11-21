@@ -36,20 +36,18 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
             </svg>
           </div>
         </Fragment>
-        <figure class="shot" slot="visual" style="max-width:600px;margin-inline:auto">
+        <figure class="shot side-notes" slot="visual">
           <div class="frame">
-            <img src={shot('tree.webp')} srcset={`${shot('tree-1280.webp')} 1280w, ${shot('tree.webp')} 1600w`} sizes="(min-width: 980px) 600px, 100vw" alt={t('ch1.alt')} width="1600" height="2000" loading="lazy" decoding="async" />
+            <img src={shot('tree.webp')} srcset={`${shot('tree-640.webp')} 640w, ${shot('tree.webp')} 920w`} sizes="(min-width: 980px) 390px, 58vw" alt={t('ch1.alt')} width="920" height="2000" loading="lazy" decoding="async" />
           </div>
           <svg class="pen ink" viewBox="0 0 1600 2000" preserveAspectRatio="none" aria-hidden="true">
             <path pathLength="1" style="--d:.4s" stroke="#f5a524" stroke-width="6" d="M935 170 C 965 200, 950 380, 975 390 C 950 400, 965 580, 935 610" />
             <path pathLength="1" style="--d:1s" stroke="#f5a524" stroke-width="6" d="M935 812 C 965 840, 950 890, 975 900 C 950 910, 965 960, 935 988" />
             <path pathLength="1" style="--d:1.6s" stroke="#f5a524" stroke-width="6" d="M935 1640 C 965 1680, 950 1800, 975 1810 C 950 1820, 965 1950, 935 1980" />
-            <path pathLength="1" style="--d:2.2s;--dur:.6s" stroke="#f5a524" stroke-width="6" d="M1180 140 C 1160 134, 1135 130, 1112 128 M1132 112 L1110 128 L1134 142" />
           </svg>
           <p class="note" style="left:63%;top:19%;--d:.8s">{t('ch1.note.inbox')}</p>
           <p class="note" style="left:63%;top:43%;--d:1.4s;--rot:2deg">{t('ch1.note.waiting')}</p>
           <p class="note" style="left:63%;top:83%;--d:2s;--rot:-3deg">{t('ch1.note.tree')}</p>
-          <p class="note" style="left:75%;top:5%;--d:2.6s;--rot:2deg">{t('ch1.note.reboot')}</p>
         </figure>
       </Chapter>
 
