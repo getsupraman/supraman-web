@@ -137,8 +137,14 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
             </div>
           </figure>
           <figure class="shot dash-shot">
-            <div class="frame"><img src={shot('dashboard-overview-dark.jpg')} alt={t('ch4.alt')} width="1530" height="784" loading="lazy" decoding="async" /></div>
-            <p class="note" style="right:3%;bottom:-48px;--d:.5s;--rot:-2deg">{t('ch4.note')}</p>
+            <div class="frame"><img src={shot('wm-item.webp')} srcset={`${shot('wm-item-800.webp')} 800w, ${shot('wm-item.webp')} 1363w`} sizes="(min-width: 980px) 640px, 100vw" alt={t('ch4.alt')} width="1363" height="1420" loading="lazy" decoding="async" /></div>
+            <svg class="pen ink" viewBox="0 0 1363 1420" preserveAspectRatio="none" aria-hidden="true">
+              <path pathLength="1" style="--d:.4s" stroke="#6cc890" stroke-width="5" d="M820 670 C 780 664, 716 670, 714 696 C 712 722, 780 726, 840 722 C 868 718, 866 674, 820 670" />
+              <path pathLength="1" style="--d:1s;--dur:.6s" stroke="#6cc890" stroke-width="5" d="M1010 1110 C 1060 960, 960 800, 852 718 M860 748 L850 716 L884 718" />
+              <path pathLength="1" style="--d:1.6s;--dur:.5s" stroke="#f5a524" stroke-width="5" d="M770 1300 C 730 1300, 700 1300, 672 1300 M694 1282 L670 1300 L694 1318" />
+            </svg>
+            <p class="note" style="left:58%;top:79%;--d:1.2s;--rot:-2deg;color:#6cc890">{t('ch4.note.proof')}</p>
+            <p class="note" style="left:58%;top:88.5%;--d:1.8s;--rot:2deg">{t('ch4.note.claim')}</p>
           </figure>
         </div>
       </Chapter>
