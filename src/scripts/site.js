@@ -25,3 +25,16 @@ if (story && fill) {
   addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(update); } }, { passive: true });
   update();
 }
+
+// Graph / Session / Diff: swap the view, then let its pen notes draw again.
+document.querySelectorAll('[data-views]').forEach((group) => {
+  const figure = document.getElementById(group.dataset.views);
+  if (!figure) return;
+  group.addEventListener('click', (e) => {
+    const b = e.target.closest('button[data-view]');
+    if (!b) return;
+    figure.dataset.view = b.dataset.view;
+    group.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+    if (!reduce) { figure.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => figure.classList.add('in'))); }
+  });
+});

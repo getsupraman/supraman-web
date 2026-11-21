@@ -7,7 +7,6 @@ import { T } from '@cms/kit/components';
 
 const base = import.meta.env.BASE_URL;
 const shot = (name: string) => `${base}shots/${name}`;
-const typed = t('ch2.demo.typed');
 const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 'native', 'update'];
 ---
 <Base title={t('site.title')}>
@@ -36,19 +35,20 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
             </svg>
           </div>
         </Fragment>
-        <figure class="shot" slot="visual">
+        <figure class="shot" slot="visual" style="max-width:600px;margin-inline:auto">
           <div class="frame">
-            <img src={shot('supraman-main.png')} alt={t('ch1.alt')} width="2122" height="1241" loading="lazy" decoding="async" />
+            <img src={shot('tree.webp')} srcset={`${shot('tree-1280.webp')} 1280w, ${shot('tree.webp')} 1600w`} sizes="(min-width: 980px) 600px, 100vw" alt={t('ch1.alt')} width="1600" height="2000" loading="lazy" decoding="async" />
           </div>
-          <svg class="pen ink" viewBox="0 0 2122 1241" preserveAspectRatio="none" aria-hidden="true">
-            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M640 662 C 420 640, 60 646, 30 690 C 8 730, 220 748, 450 744 C 640 742, 720 726, 712 694 C 706 670, 660 660, 600 660" />
-            <path pathLength="1" style="--d:1.2s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M960 640 C 880 650, 800 670, 730 690 M748 666 L728 690 L758 704" />
-            <path pathLength="1" style="--d:1.8s" stroke="#f5a524" stroke-width="7" d="M662 520 C 690 560, 676 640, 690 700 C 700 760, 670 860, 686 960" />
-            <path pathLength="1" style="--d:2.4s;--dur:.7s" stroke="#f5a524" stroke-width="7" d="M900 140 C 840 120, 790 100, 752 84 M770 70 L748 84 L770 102" />
+          <svg class="pen ink" viewBox="0 0 1600 2000" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" style="--d:.4s" stroke="#f5a524" stroke-width="6" d="M935 170 C 965 200, 950 380, 975 390 C 950 400, 965 580, 935 610" />
+            <path pathLength="1" style="--d:1s" stroke="#f5a524" stroke-width="6" d="M935 812 C 965 840, 950 890, 975 900 C 950 910, 965 960, 935 988" />
+            <path pathLength="1" style="--d:1.6s" stroke="#f5a524" stroke-width="6" d="M935 1640 C 965 1680, 950 1800, 975 1810 C 950 1820, 965 1950, 935 1980" />
+            <path pathLength="1" style="--d:2.2s;--dur:.6s" stroke="#f5a524" stroke-width="6" d="M1180 140 C 1160 134, 1135 130, 1112 128 M1132 112 L1110 128 L1134 142" />
           </svg>
-          <p class="note" style="left:46%;top:47%;--d:1.4s">{t('ch1.note.waiting')}</p>
-          <p class="note" style="left:35%;top:70%;--d:2.1s;--rot:-4deg">{t('ch1.note.tree')}</p>
-          <p class="note" style="left:43%;top:9%;--d:2.7s;--rot:2deg">{t('ch1.note.reboot')}</p>
+          <p class="note" style="left:63%;top:19%;--d:.8s">{t('ch1.note.inbox')}</p>
+          <p class="note" style="left:63%;top:43%;--d:1.4s;--rot:2deg">{t('ch1.note.waiting')}</p>
+          <p class="note" style="left:63%;top:83%;--d:2s;--rot:-3deg">{t('ch1.note.tree')}</p>
+          <p class="note" style="left:75%;top:5%;--d:2.6s;--rot:2deg">{t('ch1.note.reboot')}</p>
         </figure>
       </Chapter>
 
@@ -57,23 +57,21 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
           <T k="ch2.title" as="h2" id="talk-h" />
           <T k="ch2.body" as="p" />
         </Fragment>
-        <figure class="shot drag" slot="visual" data-reveal role="img" aria-label={t('ch2.demo.label')}>
-          <div class="frame app" aria-hidden="true" style={`--n:${typed.length};--dx:150px;--dy:120px`}>
-            <div class="app-tabs">
-              <span class="app-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
-              <span class="app-tab on"><span class="dot idle"></span>{t('ch2.demo.b')}</span>
-              <span class="app-tab"><span class="dot idle"></span>{t('ch2.demo.c')}</span>
-            </div>
-            <div class="app-term">
-              <div class="prompt"><span class="dim">&gt;</span>
-                <span class="ask-wrap">{t('ch2.demo.ask')} <span class="pasted">{t('ch2.demo.a')}</span> <span class="typed">{typed}</span></span><span class="caret"></span>
-              </div>
-              <div class="dropzone">{t('ch2.demo.drop')}</div>
-            </div>
-            <span class="ghost-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
-            <svg class="cursor" viewBox="0 0 18 22" style="left:12px;top:10px"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12 19.4 L9 13 L15 13 Z" fill="#ececec" stroke="#181818" stroke-width="1.4" stroke-linejoin="round" /></svg>
+        <figure class="shot frames" slot="visual" data-reveal>
+          <div class="frame">
+            <img src={shot('drag-4.webp')} alt={t('ch2.alt')} width="1680" height="1034" loading="lazy" decoding="async" class="f f-base" />
+            {[1, 2, 3].map((n) => (
+              <img src={shot(`drag-${n}.webp`)} alt="" width="1680" height="1034" loading="lazy" decoding="async" class={`f f${n}`} />
+            ))}
           </div>
-          <p class="note" style="right:4%;bottom:-38px;--d:.6s;--rot:-3deg">{t('ch2.note')}</p>
+          <svg class="pen" viewBox="0 0 1680 1034" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
+            <path class="w2" stroke="#f5a524" stroke-width="5" stroke-dasharray="14 14" d="M250 72 C 260 400, 520 820, 840 905" />
+            <path class="w2" stroke="#f5a524" stroke-width="5" d="M812 884 L842 906 L808 922" />
+            <path class="w34" stroke="#f5a524" stroke-width="5" d="M700 54 C 600 46, 512 56, 510 84 C 508 112, 600 120, 700 116 C 750 112, 748 60, 690 54" />
+            <path class="w34" stroke="#f5a524" stroke-width="5" d="M790 196 C 760 170, 736 146, 718 122 M716 148 L716 120 L742 130" />
+          </svg>
+          <p class="note w2" style="left:64%;top:82%;--rot:-2deg">{t('ch2.note.drop')}</p>
+          <p class="note w34" style="left:47%;top:18%;--rot:2deg">{t('ch2.note.name')}</p>
         </figure>
       </Chapter>
 
@@ -82,19 +80,38 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
           <T k="ch3.title" as="h2" id="review-h" />
           <T k="ch3.body" as="p" />
           <T k="ch3.undo" as="p" class="aside" />
-        </Fragment>
-        <figure class="shot" slot="visual">
-          <div class="frame">
-            <img src={shot('supraman-git.png')} alt={t('ch3.alt')} width="2962" height="1241" loading="lazy" decoding="async" />
+          <div class="toggle" role="group" aria-label={t('ch3.toggle.label')} data-views="review-shot">
+            <button type="button" aria-pressed="true" data-view="graph">{t('ch3.toggle.graph')}</button>
+            <button type="button" aria-pressed="false" data-view="session">{t('ch3.toggle.session')}</button>
+            <button type="button" aria-pressed="false" data-view="diff">{t('ch3.toggle.diff')}</button>
           </div>
-          <svg class="pen ink" viewBox="0 0 2962 1241" preserveAspectRatio="none" aria-hidden="true">
-            <path pathLength="1" style="--d:.5s" stroke="#f5a524" stroke-width="7" d="M1300 188 C 1100 178, 958 190, 956 230 C 954 270, 1100 280, 1300 274 C 1420 270, 1432 196, 1330 188" />
-            <path pathLength="1" style="--d:1.2s;--dur:.6s" stroke="#f5a524" stroke-width="7" d="M1470 236 C 1450 236, 1430 236, 1408 236 M1430 218 L1406 236 L1432 254" />
-            <path pathLength="1" style="--d:1.8s" stroke="#f5a524" stroke-width="7" d="M1200 350 C 1080 344, 990 354, 988 378 C 986 402, 1090 408, 1220 404 C 1312 400, 1320 360, 1240 352" />
-            <path pathLength="1" style="--d:2.4s;--dur:.6s" stroke="#f5a524" stroke-width="7" d="M1470 384 C 1420 382, 1370 380, 1326 380 M1348 362 L1324 380 L1350 398" />
+        </Fragment>
+        <figure class="shot views" slot="visual" id="review-shot" data-view="graph" data-reveal>
+          <div class="frame">
+            {[['graph', 'ch3.alt'], ['session', 'ch3.alt2'], ['diff', 'ch3.alt3']].map(([v, k]) => (
+              <img data-v={v} src={shot(`git-${v}.webp`)} srcset={`${shot(`git-${v}-1280.webp`)} 1280w, ${shot(`git-${v}.webp`)} 2360w`} sizes="(min-width: 1240px) 1180px, 100vw" alt={t(k)} width="2360" height="1934" loading="lazy" decoding="async" />
+            ))}
+          </div>
+          <svg class="pen ink" viewBox="0 0 2360 1934" preserveAspectRatio="none" aria-hidden="true">
+            <g data-v="graph">
+              <path pathLength="1" style="--d:.4s" stroke="#f5a524" stroke-width="6" d="M1000 186 C 800 176, 524 184, 520 240 C 516 294, 800 300, 1000 294 C 1090 290, 1092 194, 1020 186" />
+              <path pathLength="1" style="--d:1s;--dur:.5s" stroke="#f5a524" stroke-width="6" d="M1290 242 C 1230 242, 1150 242, 1080 242 M1104 222 L1078 242 L1106 262" />
+              <path pathLength="1" style="--d:1.5s" stroke="#f5a524" stroke-width="6" d="M1000 854 C 820 846, 616 856, 612 910 C 608 964, 820 972, 1000 968 C 1100 964, 1104 862, 1030 854" />
+              <path pathLength="1" style="--d:2.1s;--dur:.5s" stroke="#f5a524" stroke-width="6" d="M1290 912 C 1230 912, 1160 912, 1104 912 M1128 892 L1102 912 L1130 932" />
+            </g>
+            <g data-v="session">
+              <path pathLength="1" style="--d:.2s" stroke="#f5a524" stroke-width="6" d="M1840 1800 C 1780 1794, 1722 1802, 1720 1832 C 1718 1862, 1790 1866, 1846 1862 C 1880 1858, 1878 1806, 1840 1800" />
+              <path pathLength="1" style="--d:.8s;--dur:.5s" stroke="#f5a524" stroke-width="6" d="M1560 1832 C 1620 1832, 1670 1832, 1706 1832 M1684 1812 L1708 1832 L1682 1852" />
+            </g>
+            <g data-v="diff">
+              <path pathLength="1" style="--d:.2s" stroke="#f5a524" stroke-width="6" d="M1840 1172 C 1720 1166, 1536 1174, 1532 1204 C 1528 1234, 1700 1240, 1850 1234 C 1904 1230, 1900 1178, 1840 1172" />
+              <path pathLength="1" style="--d:.8s;--dur:.5s" stroke="#f5a524" stroke-width="6" d="M1330 1290 C 1400 1270, 1460 1240, 1514 1214 M1490 1204 L1516 1212 L1502 1238" />
+            </g>
           </svg>
-          <p class="note" style="left:50.5%;top:14%;--d:1.4s;--rot:-2deg">{t('ch3.note.click')}</p>
-          <p class="note" style="left:50.5%;top:27.5%;--d:2.6s;--rot:2deg">{t('ch3.note.agent')}</p>
+          <p class="note" data-v="graph" style="left:55%;top:10%;--d:1.2s;--rot:-2deg">{t('ch3.note.click')}</p>
+          <p class="note" data-v="graph" style="left:55%;top:44.5%;--d:2.3s;--rot:2deg">{t('ch3.note.agent')}</p>
+          <p class="note" data-v="session" style="left:41%;top:92%;--d:1s;--rot:-2deg">{t('ch3.note.open')}</p>
+          <p class="note" data-v="diff" style="left:36%;top:67%;--d:1s;--rot:-3deg">{t('ch3.note.stage')}</p>
         </figure>
       </Chapter>
 
@@ -161,23 +178,27 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
   {t('ch6.code.l3')}
 <span class="c">{t('ch6.code.c2')}</span></pre>
         </Fragment>
-        <figure class="shot loops" slot="visual" role="img" aria-label={t('ch6.sk.label')}>
-          <svg viewBox="0 0 520 330" aria-hidden="true" style="overflow:visible">
-            <g class="ink" stroke="#ece7d8" stroke-width="2.2">
+        <figure class="shot loops" slot="visual" style="max-width:640px;margin-inline:auto">
+          <div class="frame fade-right">
+            <img src={shot('schedule.webp')} srcset={`${shot('schedule-1280.webp')} 1280w, ${shot('schedule.webp')} 1580w`} sizes="(min-width: 980px) 640px, 100vw" alt={t('ch6.alt')} width="1580" height="1934" loading="lazy" decoding="async" />
+          </div>
+          <svg class="pen ink" viewBox="0 0 1580 1934" preserveAspectRatio="none" aria-hidden="true">
+            <path pathLength="1" style="--d:.4s" stroke="#f5a524" stroke-width="6" d="M690 372 C 720 400, 705 425, 730 434 C 705 444, 720 470, 690 496" />
+            <path pathLength="1" style="--d:1.2s" stroke="#f5a524" stroke-width="6" d="M160 1858 C 110 1852, 46 1858, 44 1886 C 42 1914, 110 1918, 172 1914 C 204 1910, 200 1864, 160 1858" />
+            <path pathLength="1" style="--d:1.8s;--dur:.5s" stroke="#f5a524" stroke-width="6" d="M470 1650 C 380 1720, 260 1820, 194 1868 M222 1870 L192 1872 L206 1846" />
+          </svg>
+          <p class="note" style="left:48%;top:19%;--d:.8s;--rot:-2deg">{t('ch6.note.fires')}</p>
+          <p class="note" style="left:30%;top:79.5%;--d:2s;--rot:-3deg">{t('ch6.sk.note')}</p>
+          <svg class="doodle" viewBox="40 30 470 210" aria-hidden="true">
+            <g class="ink" stroke="#ece7d8" stroke-width="3">
               <path pathLength="1" style="--d:.1s;--dur:1.4s" d="M150 40 C 90 50, 64 120, 100 166 C 132 206, 196 204, 226 170 C 186 178, 140 156, 130 112 C 122 76, 132 52, 150 40 Z" />
-              <path pathLength="1" style="--d:1s;--dur:.4s" d="M300 50 l6 0 M303 47 l0 6 M380 96 l6 0 M383 93 l0 6 M262 120 l5 0 M264 117 l0 5" />
+              <path pathLength="1" style="--d:1s;--dur:.4s" d="M300 50 l6 0 M303 47 l0 6 M262 120 l5 0 M264 117 l0 5" />
             </g>
-            <g class="ink" stroke="#4daafc" stroke-width="2.4">
+            <g class="ink" stroke="#4daafc" stroke-width="3.2">
               <path pathLength="1" style="--d:.8s" d="M420 70 C 470 70, 496 110, 492 150 C 488 196, 450 222, 412 220 C 368 218, 340 186, 342 144 C 344 100, 376 70, 420 70 Z" />
               <path pathLength="1" style="--d:1.6s;--dur:.5s" d="M418 146 L418 102 M418 146 L392 168" />
             </g>
-            <g class="ink" stroke="#f5a524" stroke-width="2.6">
-              <path pathLength="1" style="--d:2s" d="M170 252 L346 248 C 358 248, 362 256, 362 266 L362 286 C 362 296, 356 302, 346 302 L172 304 C 160 304, 154 298, 154 286 L154 266 C 154 256, 160 252, 170 252 Z" />
-              <path pathLength="1" style="--d:3s;--dur:.5s" d="M378 272 L392 288 L420 250" />
-            </g>
-            <text class="ctx-brief" x="258" y="284" text-anchor="middle" fill="#f5a524" font-family="Archivo, sans-serif" font-weight="700" font-size="20" style="transition-delay:2.6s">{t('ch6.sk.approve')}</text>
           </svg>
-          <p class="note" style="left:2%;bottom:-6px;--d:3.2s;--rot:-3deg">{t('ch6.sk.note')}</p>
         </figure>
       </Chapter>
     </div>
