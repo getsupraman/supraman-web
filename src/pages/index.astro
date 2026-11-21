@@ -7,6 +7,7 @@ import { T } from '@cms/kit/components';
 
 const base = import.meta.env.BASE_URL;
 const shot = (name: string) => `${base}shots/${name}`;
+const typed = t('ch2.demo.typed');
 const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 'native', 'update'];
 ---
 <Base title={t('site.title')}>
@@ -57,21 +58,23 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
           <T k="ch2.title" as="h2" id="talk-h" />
           <T k="ch2.body" as="p" />
         </Fragment>
-        <figure class="shot frames" slot="visual" data-reveal>
-          <div class="frame">
-            <img src={shot('drag-4.webp')} alt={t('ch2.alt')} width="1680" height="1034" loading="lazy" decoding="async" class="f f-base" />
-            {[1, 2, 3].map((n) => (
-              <img src={shot(`drag-${n}.webp`)} alt="" width="1680" height="1034" loading="lazy" decoding="async" class={`f f${n}`} />
-            ))}
+        <figure class="shot drag" slot="visual" data-reveal role="img" aria-label={t('ch2.demo.label')}>
+          <div class="frame app" aria-hidden="true" style={`--n:${typed.length};--dx:150px;--dy:120px`}>
+            <div class="app-tabs">
+              <span class="app-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
+              <span class="app-tab on"><span class="dot idle"></span>{t('ch2.demo.b')}</span>
+              <span class="app-tab"><span class="dot idle"></span>{t('ch2.demo.c')}</span>
+            </div>
+            <div class="app-term">
+              <div class="prompt"><span class="dim">&gt;</span>
+                <span class="ask-wrap">{t('ch2.demo.ask')} <span class="pasted">{t('ch2.demo.a')}</span> <span class="typed">{typed}</span></span><span class="caret"></span>
+              </div>
+              <div class="dropzone">{t('ch2.demo.drop')}</div>
+            </div>
+            <span class="ghost-tab"><span class="dot"></span>{t('ch2.demo.a')}</span>
+            <svg class="cursor" viewBox="0 0 18 22" style="left:12px;top:10px"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12 19.4 L9 13 L15 13 Z" fill="#ececec" stroke="#181818" stroke-width="1.4" stroke-linejoin="round" /></svg>
           </div>
-          <svg class="pen" viewBox="0 0 1680 1034" preserveAspectRatio="none" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path class="w2" stroke="#f5a524" stroke-width="5" stroke-dasharray="14 14" d="M250 72 C 260 400, 520 820, 840 905" />
-            <path class="w2" stroke="#f5a524" stroke-width="5" d="M812 884 L842 906 L808 922" />
-            <path class="w34" stroke="#f5a524" stroke-width="5" d="M700 54 C 600 46, 512 56, 510 84 C 508 112, 600 120, 700 116 C 750 112, 748 60, 690 54" />
-            <path class="w34" stroke="#f5a524" stroke-width="5" d="M790 196 C 760 170, 736 146, 718 122 M716 148 L716 120 L742 130" />
-          </svg>
-          <p class="note w2" style="left:64%;top:82%;--rot:-2deg">{t('ch2.note.drop')}</p>
-          <p class="note w34" style="left:47%;top:18%;--rot:2deg">{t('ch2.note.name')}</p>
+          <p class="note" style="right:4%;bottom:-38px;--d:.6s;--rot:-3deg">{t('ch2.note')}</p>
         </figure>
       </Chapter>
 

@@ -119,6 +119,37 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 .shot .pen { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
 .shot .note { position: absolute; max-width: 15em; text-shadow: 0 1px 0 #181818, 0 0 12px #181818; }
 
+/* the drag demo: a small Supraman, animated with CSS only */
+.drag { --cycle: 9s; }
+.drag .frame { background: var(--desk); }
+.app { font-family: var(--mono); font-size: clamp(12px, 1.05vw, 14.5px); color: var(--text); }
+.app-tabs { display: flex; gap: 2px; padding: 10px 12px 0; background: #181818; border-bottom: 1px solid var(--line); }
+.app-tab { display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 6px 6px 0 0; color: var(--muted); }
+.app-tab.on { background: var(--desk); color: var(--text); box-shadow: inset 0 2px 0 var(--blue); }
+.app-tab .dot { width: 7px; height: 7px; }
+.app-tab .dot.idle { background: #6b6b6b; }
+.app-term { position: relative; height: clamp(230px, 26vw, 320px); padding: 18px 20px; display: grid; align-content: start; gap: 8px; }
+.app-term .dim { color: var(--muted); }
+.app-term .prompt { display: flex; gap: 8px; align-items: baseline; white-space: nowrap; overflow: hidden; }
+.app-term .pasted { color: var(--blue); background: color-mix(in srgb, var(--blue) 14%, transparent); border-radius: 4px; padding: 0 4px; }
+.app-term .typed { display: inline-block; overflow: hidden; vertical-align: bottom; width: 0; }
+.app-term .caret { display: inline-block; width: .55em; height: 1.1em; background: var(--text); vertical-align: text-bottom; animation: blink 1s steps(1) infinite; }
+.app-term .dropzone { position: absolute; inset: 10px; border: 2px dashed var(--amber); border-radius: 8px; display: grid; place-items: end center; padding-bottom: 14px; color: var(--amber); font-family: var(--hand); font-size: 1.15em; opacity: 0; background: color-mix(in srgb, var(--amber) 6%, transparent); }
+.ghost-tab { position: absolute; left: 12px; top: 10px; display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 6px; background: var(--raise); color: var(--text); border: 1px solid #3c3c3c; box-shadow: 0 14px 30px -10px #000; opacity: 0; z-index: 2; }
+.cursor { position: absolute; width: 18px; height: 22px; z-index: 3; opacity: 0; }
+.drag .ask-wrap { opacity: 0; }
+.drag.in .ghost-tab { animation: ghost var(--cycle) var(--ease) infinite; }
+.drag.in .cursor { animation: cursor var(--cycle) var(--ease) infinite; }
+.drag.in .dropzone { animation: zone var(--cycle) infinite; }
+.drag.in .ask-wrap { animation: ask var(--cycle) infinite; }
+.drag.in .typed { animation: type var(--cycle) steps(var(--n)) infinite; }
+@keyframes ghost { 0%, 8% { opacity: 0; transform: translate(0, 0) rotate(0); } 12% { opacity: 1; transform: translate(0, 0) rotate(-2deg); } 34% { opacity: 1; transform: translate(var(--dx), var(--dy)) rotate(2deg); } 38%, 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) scale(.9); } }
+@keyframes cursor { 0%, 4% { opacity: 0; transform: translate(60px, 40px); } 8% { opacity: 1; transform: translate(60px, 24px); } 34% { opacity: 1; transform: translate(calc(var(--dx) + 60px), calc(var(--dy) + 24px)); } 44% { opacity: 1; transform: translate(calc(var(--dx) + 140px), calc(var(--dy) + 80px)); } 50%, 100% { opacity: 0; transform: translate(calc(var(--dx) + 140px), calc(var(--dy) + 80px)); } }
+@keyframes zone { 0%, 16% { opacity: 0; } 20%, 34% { opacity: 1; } 38%, 100% { opacity: 0; } }
+@keyframes ask { 0%, 36% { opacity: 0; } 38%, 94% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes type { 0%, 46% { width: 0; } 80%, 100% { width: calc(var(--n) * 1ch); } }
+@keyframes blink { 50% { opacity: 0; } }
+
 /* the proof terminal */
 .proof-term .term-body { min-height: 0; gap: 6px; }
 .proof-term .ln { opacity: 0; transform: translateY(4px); white-space: normal; }
@@ -178,7 +209,8 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .ink path { stroke-dashoffset: 0; }
-  .note, .claim .ln, .proof-term .ln { opacity: 1; transform: none; }
+  .note, .claim .ln, .proof-term .ln, .drag .ask-wrap { opacity: 1; transform: none; }
+  .app-term .typed { width: calc(var(--n) * 1ch); }
   .claim .strike { transform: scaleX(1); }
 }
 
@@ -196,11 +228,14 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 
 /* small screens: keep the spine, tighten its gutter, never let the demo widen the page */
 .ch-text, .ch-visual { min-width: 0; }
+.app { overflow: hidden; }
+.app-tab { white-space: nowrap; }
 @media (max-width: 640px) {
   .chapter { padding-left: 44px; }
   .node { width: 32px; height: 32px; left: -4px; }
   .node svg { width: 16px; height: 16px; }
   .spine { left: calc(var(--gutter) + 11px); }
+  .app-tab { padding: 7px 10px; }
   .shot .note { font-size: 15px; }
   .claim .doubt { position: static; margin-top: 10px; }
 }
@@ -210,24 +245,6 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 .chapter.wide .ch-text { max-width: 760px; }
 .chapter.wide .ch-text p { max-width: 40em; }
 @media (max-width: 760px) { .chapter.wide .shot .note { display: none; } }
-
-/* the drag frames: four real screenshots in a loop, the pen notes timed to them */
-.frames { --cycle: 9s; }
-.frames .frame { position: relative; }
-.frames .f + .f { position: absolute; inset: 0; width: 100%; height: 100%; }
-.frames .f1, .frames .f2, .frames .f3 { opacity: 0; }
-.frames .f1 { opacity: 1; }
-.frames .pen .w2, .frames .pen .w34, .frames .note.w2, .frames .note.w34 { opacity: 0; }
-.frames.in .f1 { animation: fr1 var(--cycle) infinite; }
-.frames.in .f2 { animation: fr2 var(--cycle) infinite; }
-.frames.in .f3 { animation: fr3 var(--cycle) infinite; }
-.frames.in .w2 { animation: fr2 var(--cycle) infinite; }
-.frames.in .w34 { animation: fr34 var(--cycle) infinite; }
-.frames .note { transform: rotate(var(--rot, -2deg)); transition: none; }
-@keyframes fr1 { 0%, 14% { opacity: 1; } 16%, 96% { opacity: 0; } 100% { opacity: 1; } }
-@keyframes fr2 { 0%, 14% { opacity: 0; } 16%, 40% { opacity: 1; } 42%, 100% { opacity: 0; } }
-@keyframes fr3 { 0%, 40% { opacity: 0; } 42%, 60% { opacity: 1; } 62%, 100% { opacity: 0; } }
-@keyframes fr34 { 0%, 40% { opacity: 0; } 42%, 94% { opacity: 1; } 97%, 100% { opacity: 0; } }
 
 /* Graph / Session / Diff */
 .views .frame { position: relative; }
@@ -247,7 +264,3 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 .loops .doodle { position: absolute; top: -64px; right: -40px; width: 190px; overflow: visible; pointer-events: none; }
 @media (max-width: 640px) { .loops .doodle { width: 120px; top: -44px; right: -8px; } }
 
-@media (prefers-reduced-motion: reduce) {
-  .frames .f1, .frames .f2, .frames .f3 { opacity: 0 !important; }
-  .frames .w34 { opacity: 1 !important; }
-}
