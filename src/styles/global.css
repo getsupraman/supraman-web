@@ -386,3 +386,33 @@ code, kbd { font-family: var(--mono); font-size: .88em; }
 
 .hero .what { margin-top: 26px; font-size: clamp(19px, 1.7vw, 23px); color: var(--chalk); font-weight: 600; max-width: 30em; }
 .hero .what + .lede { margin-top: 14px; }
+
+/* phone: the 16 s window is too small to read, so each step gets its own still fragment of the app */
+.mini { display: none; }
+@media (max-width: 640px) {
+  .how .stage { display: none; }
+  .how-steps { margin-top: 0; gap: 26px; }
+  .how-steps li { color: var(--text); border-color: var(--line); animation: none !important; }
+  .mini { display: grid; gap: 6px; margin-top: 14px; padding: 12px; background: #181818; border: 1px solid var(--line); border-radius: 10px; font-size: 14px; }
+  .mi-bar { display: flex; }
+  .mi-btn { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 6px; background: #2d2d2d; color: var(--chalk); font-size: 18px; }
+  .mi-menu { display: grid; justify-self: start; padding: 4px; background: var(--raise); border: 1px solid #3c3c3c; border-radius: 7px; }
+  .mi-menu span { padding: 6px 12px; border-radius: 5px; }
+  .mi-menu .on { background: #04395e; color: var(--chalk); }
+  .mi-row { display: flex; align-items: center; gap: 9px; min-height: 30px; padding: 0 8px; border-radius: 6px; white-space: nowrap; }
+  .mi-row.sess { padding-left: 26px; }
+  .mi-row .fi { width: 16px; height: 12px; border: 2px solid var(--muted); border-radius: 3px; flex: none; }
+  .mi-row b { color: var(--chalk); font-weight: 650; flex: 1; }
+  .mi-row .nm { flex: 1; }
+  .mi-row .sd { width: 8px; height: 8px; }
+  .mi-row .ss { font-size: 12.5px; }
+  .mi-row.hot { background: #2a2d2e; }
+  .mi-hov { width: 26px; height: 26px; display: grid; place-items: center; border-radius: 5px; background: #3a3a3a; color: var(--chalk); }
+  .mi-tip { justify-self: end; padding: 4px 10px; border-radius: 5px; background: #2d2d2d; border: 1px solid #454545; color: var(--chalk); font-size: 12.5px; }
+  .mi-tab { display: grid; gap: 6px; margin: 2px 0 8px; padding: 0 0 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--desk); font-family: var(--mono); font-size: 12px; overflow: hidden; }
+  .mi-tabname { justify-self: start; padding: 5px 12px; background: var(--desk); box-shadow: inset 0 2px 0 var(--blue); color: var(--text); font-family: var(--sans); font-size: 13px; }
+  .mi-tab .dim { padding: 0 12px; color: var(--muted); white-space: normal; }
+  .mi-in { opacity: 0; transform: translateY(6px); }
+  .how.in .mi-in { opacity: 1; transform: none; transition: opacity .45s var(--ease) calc(var(--i) * .25s + .2s), transform .45s var(--ease) calc(var(--i) * .25s + .2s); }
+}
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) { .mi-in { opacity: 1; transform: none; } }

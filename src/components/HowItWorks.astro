@@ -44,9 +44,30 @@ const rows = [
       <span class="st-click" aria-hidden="true"></span>
     </div>
     <ol class="how-steps">
-      <li class="s1"><T k="how.step1" as="span" /></li>
-      <li class="s2"><T k="how.step2" as="span" /></li>
-      <li class="s3"><T k="how.step3" as="span" /></li>
+      <li class="s1"><T k="how.step1" as="span" />
+        <div class="mini" aria-hidden="true">
+          <div class="mi-bar"><span class="mi-btn">+</span></div>
+          <div class="mi-menu"><span class="on">{t('how.demo.add_folder')}</span><span>{t('how.demo.add_group')}</span></div>
+          <div class="mi-row folder mi-in" style="--i:3"><span class="fi"></span><b>{t('how.demo.folder')}</b></div>
+        </div>
+      </li>
+      <li class="s2"><T k="how.step2" as="span" />
+        <div class="mini" aria-hidden="true">
+          <div class="mi-row folder"><span class="fi"></span><b>{t('how.demo.folder')}</b></div>
+          {rows.map((r, i) => (
+            <div class="mi-row sess mi-in" style={`--i:${i + 1}`}><span class={`sd ${r.cls}`}></span><span class="nm">{t(r.name)}</span><span class={`ss ${r.cls}`}>{t(r.state)}</span></div>
+          ))}
+        </div>
+      </li>
+      <li class="s3"><T k="how.step3" as="span" />
+        <div class="mini" aria-hidden="true">
+          <div class="mi-row sess hot"><span class="sd idle"></span><span class="nm">{t('how.demo.s2')}</span><span class="mi-hov">↗</span></div>
+          <div class="mi-tip mi-in" style="--i:1">{t('how.demo.resume')}</div>
+          <div class="mi-tab mi-in" style="--i:2"><span class="mi-tabname">{t('how.demo.s2')}</span><span class="dim">{t('how.demo.history')}</span></div>
+          <div class="mi-row folder hot mi-in" style="--i:3"><span class="fi"></span><b>{t('how.demo.folder')}</b><span class="mi-hov">+</span></div>
+          <div class="mi-tip mi-in" style="--i:4">{t('how.demo.new')}</div>
+        </div>
+      </li>
     </ol>
   </figure>
 </Chapter>
