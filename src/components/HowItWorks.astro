@@ -1,0 +1,52 @@
+---
+// The first node of the story: what Supraman is, as one animated sketch of the real gestures
+// (folder add, rows found, double-click resumes, the folder row's + starts claude). Gestures checked
+// against Supraman master 96aff01b: view/left.rs new_claude and open_row.
+import { t } from '@cms/kit/content';
+import { T } from '@cms/kit/components';
+import Chapter from './Chapter.astro';
+
+const rows = [
+  { name: 'how.demo.s1', state: 'how.demo.working', cls: 'working' },
+  { name: 'how.demo.s2', state: 'how.demo.idle', cls: 'idle' },
+  { name: 'how.demo.s3', state: 'how.demo.waiting', cls: 'waiting' },
+];
+---
+<Chapter id="how" wide>
+  <Fragment slot="text">
+    <T k="how.title" as="h2" id="how-h" />
+    <T k="how.body" as="p" />
+  </Fragment>
+  <figure class="how" slot="visual" data-reveal>
+    <div class="stage" role="img" aria-label={t('how.demo.label')}>
+      <div class="st-title"><img src={`${import.meta.env.BASE_URL}brand/supraman-16.svg`} alt="" /><span data-cms-literal>Supraman</span></div>
+      <div class="st-side" aria-hidden="true">
+        <div class="st-tools"><span class="st-btn add">+</span></div>
+        <div class="st-menu"><span class="on">{t('how.demo.add_folder')}</span><span>{t('how.demo.add_group')}</span></div>
+        <div class="st-row folder">
+          <span class="fi"></span><b>{t('how.demo.folder')}</b>
+          <span class="hov plus">+</span>
+          <span class="tip tip-new">{t('how.demo.new')}</span>
+        </div>
+        {rows.map((r, i) => (
+          <div class={`st-row sess r${i + 1}`}>
+            <span class={`sd ${r.cls}`}></span><span class="nm">{t(r.name)}</span><span class={`ss ${r.cls}`}>{t(r.state)}</span>
+            {i === 1 && <><span class="hov open">↗</span><span class="tip tip-open">{t('how.demo.resume')}</span></>}
+          </div>
+        ))}
+      </div>
+      <div class="st-main" aria-hidden="true">
+        <div class="st-tabs"><span class="st-tab ta">{t('how.demo.s2')}</span><span class="st-tab tb">{t('how.demo.folder')}</span></div>
+        <div class="st-term ta"><span class="dim">{t('how.demo.history')}</span><span>&gt; <i class="caret"></i></span></div>
+        <div class="st-term tb"><span class="dim">{t('how.demo.fresh')}</span><span>&gt; <i class="caret"></i></span></div>
+      </div>
+      <svg class="st-cursor" viewBox="0 0 18 22" aria-hidden="true"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12 19.4 L9 13 L15 13 Z" fill="#ececec" stroke="#181818" stroke-width="1.4" stroke-linejoin="round" /></svg>
+      <span class="st-click" aria-hidden="true"></span>
+    </div>
+    <ol class="how-steps">
+      <li class="s1"><T k="how.step1" as="span" /></li>
+      <li class="s2"><T k="how.step2" as="span" /></li>
+      <li class="s3"><T k="how.step3" as="span" /></li>
+    </ol>
+  </figure>
+</Chapter>

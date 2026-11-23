@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Hero from '../components/Hero.astro';
 import Chapter from '../components/Chapter.astro';
+import HowItWorks from '../components/HowItWorks.astro';
 import { t } from '@cms/kit/content';
 import { T } from '@cms/kit/components';
 
@@ -16,6 +17,8 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
   <div class="story" id="story" aria-label={t('spine.label')}>
     <div class="spine" aria-hidden="true"><div class="spine-fill"></div></div>
     <div class="wrap">
+
+      <HowItWorks />
 
       <Chapter id="crew">
         <Fragment slot="text">
