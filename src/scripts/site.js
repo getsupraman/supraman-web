@@ -38,3 +38,54 @@ document.querySelectorAll('[data-views]').forEach((group) => {
     if (!reduce) { figure.classList.remove('in'); requestAnimationFrame(() => requestAnimationFrame(() => figure.classList.add('in'))); }
   });
 });
+
+// Lightbox: any [data-zoom] figure opens large; on a phone it is wider than the screen and pans.
+const zoomLabel = document.body.dataset.zoomLabel || '';
+const closeLabel = document.body.dataset.closeLabel || '';
+let box;
+const closeBox = () => { if (box) { box.hidden = true; box.querySelector('.lb-body').replaceChildren(); document.documentElement.style.overflow = ''; } };
+const openBox = (fig) => {
+  if (!box) {
+    box = document.createElement('div');
+    box.className = 'lightbox';
+    box.setAttribute('role', 'dialog');
+    box.setAttribute('aria-modal', 'true');
+    box.innerHTML = '<button type="button" class="lb-close"></button><div class="lb-body"></div>';
+    box.querySelector('.lb-close').textContent = closeLabel;
+    box.addEventListener('click', (e) => { if (e.target === box || e.target.closest('.lb-close')) closeBox(); });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') closeBox(); });
+    document.body.append(box);
+  }
+  const body = box.querySelector('.lb-body');
+  const stage = fig.querySelector('.stage');
+  if (stage) {
+    const clone = fig.cloneNode(true);
+    clone.querySelectorAll('.zoom-btn, .how-steps').forEach((x) => x.remove());
+    clone.classList.add('in');
+    body.style.setProperty('--lb-min', '960px');
+    body.style.setProperty('--lb-max', '1500px');
+    body.replaceChildren(clone);
+  } else {
+    const shown = [...fig.querySelectorAll('.frame img')].find((i) => !i.closest('[data-view]') || i.dataset.v === fig.dataset.view) || fig.querySelector('.frame img');
+    const img = new Image();
+    const src = shown.getAttribute('src');
+    img.src = src;
+    img.alt = shown.alt;
+    const w = Number(shown.getAttribute('width')) || 1600;
+    body.style.setProperty('--lb-min', innerWidth < 760 ? `${Math.min(w, 1400) * 0.75}px` : '0px');
+    body.style.setProperty('--lb-max', `${w}px`);
+    body.replaceChildren(img);
+  }
+  box.hidden = false;
+  document.documentElement.style.overflow = 'hidden';
+  box.querySelector('.lb-close').focus();
+};
+document.querySelectorAll('[data-zoom]').forEach((fig) => {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.className = 'zoom-btn';
+  b.textContent = zoomLabel;
+  fig.append(b);
+  b.addEventListener('click', () => openBox(fig));
+  fig.querySelector('.frame, .stage')?.addEventListener('click', () => openBox(fig));
+});

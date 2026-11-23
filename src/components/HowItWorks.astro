@@ -5,11 +5,12 @@
 import { t } from '@cms/kit/content';
 import { T } from '@cms/kit/components';
 import Chapter from './Chapter.astro';
+import Icon from './Icon.astro';
 
 const rows = [
-  { name: 'how.demo.s1', state: 'how.demo.working', cls: 'working' },
-  { name: 'how.demo.s2', state: 'how.demo.idle', cls: 'idle' },
-  { name: 'how.demo.s3', state: 'how.demo.waiting', cls: 'waiting' },
+  { name: 'how.demo.s1', state: 'how.demo.working', dot: 'working', fav: true, tab: true },
+  { name: 'how.demo.s2', state: 'how.demo.idle', dot: 'closed', fav: true, tab: false },
+  { name: 'how.demo.s3', state: 'how.demo.waiting', dot: 'waiting', fav: false, tab: false },
 ];
 ---
 <Chapter id="how" wide>
@@ -17,57 +18,59 @@ const rows = [
     <T k="how.title" as="h2" id="how-h" />
     <T k="how.body" as="p" />
   </Fragment>
-  <figure class="how" slot="visual" data-reveal>
+  <figure class="how" slot="visual" data-reveal data-zoom>
     <div class="stage" role="img" aria-label={t('how.demo.label')}>
       <div class="st-title"><img src={`${import.meta.env.BASE_URL}brand/supraman-16.svg`} alt="" /><span data-cms-literal>Supraman</span></div>
       <div class="st-side" aria-hidden="true">
-        <div class="st-tools"><span class="st-btn add">+</span></div>
+        <div class="st-tools">
+          <span class="st-btn add"><Icon name="folder-plus" /></span><span class="st-sep"></span>
+          <span class="st-btn"><Icon name="expand" /></span><span class="st-btn"><Icon name="collapse" /></span><span class="st-btn"><Icon name="eye-off" /></span><span class="st-btn"><Icon name="refresh" /></span>
+        </div>
         <div class="st-menu"><span class="on">{t('how.demo.add_folder')}</span><span>{t('how.demo.add_group')}</span></div>
         <div class="st-row folder">
-          <span class="fi"></span><b>{t('how.demo.folder')}</b>
-          <span class="hov plus">+</span>
+          <Icon name="chevron" class="chev" /><Icon name="repo" class="fo" /><b>{t('how.demo.folder')}</b><span class="br">{t('how.demo.branch')}</span>
+          <span class="hovs plus-set"><span class="hv"><Icon name="git" /></span><span class="hv plus"><Icon name="plus" /></span><span class="hv"><Icon name="terminal" /></span></span>
           <span class="tip tip-new">{t('how.demo.new')}</span>
         </div>
         {rows.map((r, i) => (
           <div class={`st-row sess r${i + 1}`}>
-            <span class={`sd ${r.cls}`}></span><span class="nm">{t(r.name)}</span><span class={`ss ${r.cls}`}>{t(r.state)}</span>
-            {i === 1 && <><span class="hov open">↗</span><span class="tip tip-open">{t('how.demo.resume')}</span></>}
+            {i === 1
+              ? <><span class="sd-pair"><span class="sd closed swap-a"></span><span class="sd idle swap-b"></span></span><span class="nm">{t(r.name)}</span><span class="ss ss-pair"><span class="swap-a">{t(r.state)}</span><span class="swap-b">{t('how.demo.idle2')}</span></span></>
+              : <><span class={`sd ${r.dot}`}></span><span class="nm">{t(r.name)}</span><span class={`ss ${r.dot}`}>{t(r.state)}</span></>}
+            <span class:list={['fav', { on: r.fav }]}><Icon name="star" /></span>
+            <span class="slot">{r.tab && <Icon name="monitor" />}{i === 1 && <><span class="mon-late"><Icon name="monitor" /></span><span class="hv open"><Icon name="open" /></span></>}</span>
+            {i === 1 && <span class="tip tip-open">{t('how.demo.resume')}</span>}
           </div>
         ))}
       </div>
       <div class="st-main" aria-hidden="true">
-        <div class="st-tabs"><span class="st-tab ta">{t('how.demo.s2')}</span><span class="st-tab tb">{t('how.demo.folder')}</span></div>
-        <div class="st-term ta"><span class="dim">{t('how.demo.history')}</span><span>&gt; <i class="caret"></i></span></div>
-        <div class="st-term tb"><span class="dim">{t('how.demo.fresh')}</span><span>&gt; <i class="caret"></i></span></div>
+        <div class="st-tabs">
+          <span class="st-tab t0"><span class="cl">✳</span>{t('how.demo.s1')}</span>
+          <span class="st-tab ta"><span class="cl">✳</span>{t('how.demo.s2')}</span>
+          <span class="st-tab tb"><span class="cl">✳</span>{t('how.demo.folder')}</span>
+        </div>
+        {[
+          ['t0', 'how.demo.t0_user', 'how.demo.t0_bot', true],
+          ['ta', 'how.demo.ta_user', 'how.demo.ta_bot', false],
+          ['tb', '', '', false],
+        ].map(([cls, user, bot, working]) => (
+          <div class={`st-term ${cls}`}>
+            <div class="cc-head"><b>{t('how.demo.cc')}</b> <span class="dim">{t('how.demo.cc_ver')}</span><br /><span class="dim">{t('how.demo.path')}</span></div>
+            {user && <div class="cc-msg"><span class="dim">&gt;</span> {t(user as string)}</div>}
+            {bot && <div class="cc-msg"><span class="ok">●</span> {t(bot as string)}</div>}
+            {working && <div class="cc-msg work">✻ {t('how.demo.t0_work')}</div>}
+            <div class="cc-input"><span class="cc-p">❯</span>{cls === 'tb' ? <span class="dim">{t('how.demo.input_hint')}</span> : <i class="caret"></i>}</div>
+            <div class="cc-mode">⏵⏵ {t('how.demo.mode')}</div>
+          </div>
+        ))}
       </div>
       <svg class="st-cursor" viewBox="0 0 18 22" aria-hidden="true"><path d="M2 2 L2 18 L6.5 14 L9.5 20.5 L12 19.4 L9 13 L15 13 Z" fill="#ececec" stroke="#181818" stroke-width="1.4" stroke-linejoin="round" /></svg>
       <span class="st-click" aria-hidden="true"></span>
     </div>
     <ol class="how-steps">
-      <li class="s1"><T k="how.step1" as="span" />
-        <div class="mini" aria-hidden="true">
-          <div class="mi-bar"><span class="mi-btn">+</span></div>
-          <div class="mi-menu"><span class="on">{t('how.demo.add_folder')}</span><span>{t('how.demo.add_group')}</span></div>
-          <div class="mi-row folder mi-in" style="--i:3"><span class="fi"></span><b>{t('how.demo.folder')}</b></div>
-        </div>
-      </li>
-      <li class="s2"><T k="how.step2" as="span" />
-        <div class="mini" aria-hidden="true">
-          <div class="mi-row folder"><span class="fi"></span><b>{t('how.demo.folder')}</b></div>
-          {rows.map((r, i) => (
-            <div class="mi-row sess mi-in" style={`--i:${i + 1}`}><span class={`sd ${r.cls}`}></span><span class="nm">{t(r.name)}</span><span class={`ss ${r.cls}`}>{t(r.state)}</span></div>
-          ))}
-        </div>
-      </li>
-      <li class="s3"><T k="how.step3" as="span" />
-        <div class="mini" aria-hidden="true">
-          <div class="mi-row sess hot"><span class="sd idle"></span><span class="nm">{t('how.demo.s2')}</span><span class="mi-hov">↗</span></div>
-          <div class="mi-tip mi-in" style="--i:1">{t('how.demo.resume')}</div>
-          <div class="mi-tab mi-in" style="--i:2"><span class="mi-tabname">{t('how.demo.s2')}</span><span class="dim">{t('how.demo.history')}</span></div>
-          <div class="mi-row folder hot mi-in" style="--i:3"><span class="fi"></span><b>{t('how.demo.folder')}</b><span class="mi-hov">+</span></div>
-          <div class="mi-tip mi-in" style="--i:4">{t('how.demo.new')}</div>
-        </div>
-      </li>
+      <li class="s1"><T k="how.step1" as="span" /></li>
+      <li class="s2"><T k="how.step2" as="span" /></li>
+      <li class="s3"><T k="how.step3" as="span" /></li>
     </ol>
   </figure>
 </Chapter>

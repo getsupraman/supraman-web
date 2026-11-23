@@ -39,7 +39,7 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
             </svg>
           </div>
         </Fragment>
-        <figure class="shot side-notes" slot="visual">
+        <figure class="shot side-notes" slot="visual" data-zoom>
           <div class="frame">
             <img src={shot('tree.webp')} srcset={`${shot('tree-640.webp')} 640w, ${shot('tree.webp')} 920w`} sizes="(min-width: 980px) 390px, 58vw" alt={t('ch1.alt')} width="920" height="2000" loading="lazy" decoding="async" />
           </div>
@@ -90,7 +90,7 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
             <button type="button" aria-pressed="false" data-view="diff">{t('ch3.toggle.diff')}</button>
           </div>
         </Fragment>
-        <figure class="shot views" slot="visual" id="review-shot" data-view="graph" data-reveal>
+        <figure class="shot views" slot="visual" id="review-shot" data-view="graph" data-reveal data-zoom>
           <div class="frame">
             {[['graph', 'ch3.alt'], ['session', 'ch3.alt2'], ['diff', 'ch3.alt3']].map(([v, k]) => (
               <img data-v={v} src={shot(`git-${v}.webp`)} srcset={`${shot(`git-${v}-1280.webp`)} 1280w, ${shot(`git-${v}.webp`)} 2360w`} sizes="(min-width: 1240px) 1180px, 100vw" alt={t(k)} width="2360" height="1934" loading="lazy" decoding="async" />
@@ -139,7 +139,7 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
               <div class="ln ok" style="--d:3.9s"><span>✓</span><span>{t('ch4.term.l9')}</span></div>
             </div>
           </figure>
-          <figure class="shot dash-shot">
+          <figure class="shot dash-shot" data-zoom>
             <div class="frame"><img src={shot('wm-item.webp')} srcset={`${shot('wm-item-800.webp')} 800w, ${shot('wm-item.webp')} 1363w`} sizes="(min-width: 980px) 640px, 100vw" alt={t('ch4.alt')} width="1363" height="1420" loading="lazy" decoding="async" /></div>
             <svg class="pen ink" viewBox="0 0 1363 1420" preserveAspectRatio="none" aria-hidden="true">
               <path pathLength="1" style="--d:.4s" stroke="#6cc890" stroke-width="5" d="M820 670 C 780 664, 716 670, 714 696 C 712 722, 780 726, 840 722 C 868 718, 866 674, 820 670" />
@@ -188,7 +188,7 @@ const little = ['reopen', 'undo', 'merge', 'lines', 'inbox', 'reboot', 'theme', 
   {t('ch6.code.l3')}
 <span class="c">{t('ch6.code.c2')}</span></pre>
         </Fragment>
-        <figure class="shot loops" slot="visual" style="max-width:640px;margin-inline:auto">
+        <figure class="shot loops" slot="visual" style="max-width:640px;margin-inline:auto" data-zoom>
           <div class="frame fade-right">
             <img src={shot('schedule.webp')} srcset={`${shot('schedule-1280.webp')} 1280w, ${shot('schedule.webp')} 1580w`} sizes="(min-width: 980px) 640px, 100vw" alt={t('ch6.alt')} width="1580" height="1934" loading="lazy" decoding="async" />
           </div>
